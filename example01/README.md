@@ -22,4 +22,5 @@
 
 ```
 example01/main.go:13:1: exported function HelloWorld should have comment or be unexported
+example01/main.go:13:17: don't use underscores in Go names; func parameter user_name should be userName
 ```

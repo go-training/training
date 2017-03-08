@@ -10,6 +10,6 @@ func main() {
 	if (a >= 1) { fmt.Println("a >= 1") }
 }
 
-func HelloWorld(name string) string {
-	return fmt.Sprintf("Hi, %s ", name)
+func HelloWorld(user_name string) string {
+	return fmt.Sprintf("Hi, %s ", user_name)
 }
