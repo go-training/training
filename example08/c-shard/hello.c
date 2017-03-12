@@ -1,4 +1,3 @@
-// filename: _wale.c
 #include "hello.h"
 #include <stdio.h>
 
