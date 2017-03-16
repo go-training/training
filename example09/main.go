@@ -32,5 +32,4 @@ func main() {
 	detail(car2)
 	detail(car3)
 	detail(car4)
-
 }
