@@ -22,3 +22,13 @@ func (l Lexus) ShowDiscount() float64 {
 // func (l Lexus) ShowColor() string {
 // 	return l.Color
 // }
+
+// NewCar contructure
+func NewCar(name string, price float64, discount float64, color string) *Lexus {
+	return &Lexus{
+		Name:     name,
+		Price:    price,
+		Discount: discount,
+		Color:    color,
+	}
+}

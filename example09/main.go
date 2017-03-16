@@ -52,4 +52,7 @@ func main() {
 	detail(car1)
 	detail(car2)
 	detail(car3)
+
+	car4 := lexus.NewCar("car4", 6000, 0.7, "red")
+	detail(car4)
 }
