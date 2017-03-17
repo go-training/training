@@ -13,3 +13,8 @@ type MyError struct {
 func (e MyError) Error() string {
 	return fmt.Sprintf("%v: %v", e.Title, e.Message)
 }
+
+func IsMyError(err error) bool {
+	_, ok := err.(MyError)
+	return ok
+}
