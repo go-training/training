@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
+	// "strconv"
 
 	"github.com/go-training/training/sample/calc"
+	_ "github.com/go-training/training/sample/hello"
 	"github.com/go-training/training/sample/lexus"
 	"github.com/go-training/training/sample/toyota"
 )
@@ -31,6 +33,7 @@ func hello(i int) (a int, b string) {
 }
 
 func main() {
+	// fmt.Println(hello.Total)
 	// var i []int
 
 	// i, s := hello(0)
@@ -86,6 +89,34 @@ func main() {
 
 	Show(t1)
 	Show(t2)
+
+	add(100.009)
+}
+
+func add(i interface{}) {
+	if v, ok := i.(string); ok {
+		fmt.Println(v)
+	}
+
+	v, ok := i.(string)
+	fmt.Println(v, ok)
+
+	// switch i.(type) {
+	// case string:
+	// 	fmt.Println("it is string")
+	// 	_, err := strconv.ParseInt(i 10, 64)
+	// 	if err != nil {
+	// 		fmt.Println(err)
+	// 		return
+	// 	}
+	// case int:
+	// 	fmt.Println("it is int")
+	// 	// integer to string
+	// 	a := fmt.Sprintf("%d", i)
+	// 	fmt.Println(a)
+	// default:
+	// 	fmt.Println("not int and string")
+	// }
 }
 
 func Show(c Car) {
