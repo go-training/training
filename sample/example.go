@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 
+	"github.com/go-training/training/sample/calc"
+	"github.com/go-training/training/sample/lexus"
 	"github.com/go-training/training/sample/toyota"
 )
 
@@ -71,4 +73,26 @@ func main() {
 
 	d := toyota.New("car03")
 	fmt.Println(d)
+
+	c := calc.NewCalc(100)
+	fmt.Println(c)
+
+	c.Add(100, 200)
+	c.Sub([]int{100, 1000}...)
+	c.Output()
+
+	t1 := toyota.New("toyota01")
+	t2 := lexus.New("lexus02")
+
+	Show(t1)
+	Show(t2)
+}
+
+func Show(c Car) {
+	fmt.Println(c)
+}
+
+type Car interface {
+	Sum() float64
+	SetName(string)
 }
