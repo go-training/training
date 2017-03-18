@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	// "github.com/appleboy/hello/hello"
+
+	"github.com/go-training/training/sample/toyota"
 )
 
 func average(a ...int) (int, int) {
@@ -30,16 +31,16 @@ func hello(i int) (a int, b string) {
 func main() {
 	// var i []int
 
-	i, s := hello(0)
+	// i, s := hello(0)
 
-	fmt.Println(i, s)
+	// fmt.Println(i, s)
 
 	// _, b := average(1112, 222)
 	// c := []int{111, 222, 333, 444}
 
-	if _, b := average(); b > 0 {
-		fmt.Println(b)
-	}
+	// if _, b := average(); b > 0 {
+	// 	fmt.Println(b)
+	// }
 
 	// fmt.Println(i, a, b)
 	// fmt.Println(a)
@@ -60,4 +61,14 @@ func main() {
 	// case 0:
 	// 	fmt.Println("not ok")
 	// }
+
+	t := toyota.Toyota{"car1", 5000, 0.8, 4000}
+
+	fmt.Println(t)
+	fmt.Println(t.Sum())
+	t.SetName("car2")
+	fmt.Println(t.Name)
+
+	d := toyota.New("car03")
+	fmt.Println(d)
 }
