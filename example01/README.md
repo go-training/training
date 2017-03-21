@@ -1,8 +1,8 @@
-# Hello World 範例
+# Hello World
 
 ## gofmt
 
-請用 `gofmt` 指令修復 `main.go` 程式碼格式，顯示修正 diff 資料。`gofmt -d example01`
+Try to fix `main.go` file using `gofmt` command and show diff data from `gofmt -d example01` command.
 
 ```diff
         fmt.Printf(HelloWorld("appleboy"))
@@ -14,11 +14,11 @@
 +       }
 ```
 
-透過 `-w` 自動修復並且存檔: `gofmt -w example01`
+Fix and save automatically using `-w` flag: `gofmt -w example01`
 
 ## golint
 
-請用 `golint` 指令修復 `main.go` 程式碼品質
+Try to improve code quailty using `golint` command.
 
 ```
 example01/main.go:13:1: exported function HelloWorld should have comment or be unexported
