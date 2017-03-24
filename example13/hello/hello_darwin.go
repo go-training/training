@@ -1,5 +1,3 @@
-// +build darwin
-
 package hello
 
 // Hello is hello world

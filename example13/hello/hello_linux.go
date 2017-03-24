@@ -1,5 +1,3 @@
-// +build linux
-
 package hello
 
 // Hello is hello world

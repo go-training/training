@@ -1,5 +1,3 @@
-// +build windows
-
 package hello
 
 // Hello is hello world
