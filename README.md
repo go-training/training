@@ -13,7 +13,7 @@ Learning basic [Golang](https://golang.org/) in one day
 * [example07](./example07-errors-hanlder): Errors handler in Go.
 * [example08](./example08-type-assertions): A type assertion provides access to an interface value.
 * [example09](./example09-command-line-tool): Write command line tool in Go.
-* [example10](./example10-simple-http-server): Simple http server.
+* [example10](./example10-simple-http-server): Simple http server and show example using [gin][4] framework.
 * [example11](./example11-cross-build): Learn go build constraints.
 * [example12](./example12-build-with-docker): Building minimal docker containers for go application.
 * [example13](./example13-share-golang-package-to-c): Sharing Golang packages to C and Go.
@@ -21,3 +21,4 @@ Learning basic [Golang](https://golang.org/) in one day
 [1]:https://github.com/golang/lint
 [2]:https://golang.org/cmd/gofmt/
 [3]:https://golang.org/doc/code.html#Library
+[4]:https://github.com/gin-gonic/gin
