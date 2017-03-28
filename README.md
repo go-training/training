@@ -11,6 +11,8 @@ Learning basic [Golang](https://golang.org/) in one day
 * [example05](./example05-interface): Create interface for multiple struct.
 * [example06](./example06-go-concurrency): How to use Goroutines in Go, share by communicating.
 * [example07](./example07-errors-hanlder): Errors handler in Go.
+* [example08](./example08-type-assertions): A type assertion provides access to an interface value.
+* [example09](./example09-command-line-tool): Write command line tool in Go.
 
 
 [1]:https://github.com/golang/lint
