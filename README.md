@@ -10,6 +10,7 @@ Learning basic [Golang](https://golang.org/) in one day
 * [example04](./example04-constructor-and-struct): How to initializing `constructor` in Go.
 * [example05](./example05-interface): Create interface for multiple struct.
 * [example06](./example06-go-concurrency): How to use Goroutines in Go, share by communicating.
+* [example07](./example07-errors-hanlder): Errors handler in Go.
 
 
 [1]:https://github.com/golang/lint
