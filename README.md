@@ -9,6 +9,8 @@ Learning basic [Golang](https://golang.org/) in one day
 * [example03](./example03-if-switch-const): How to use `if`, `switch` and `const` in Go.
 * [example04](./example04-constructor-and-struct): How to initializing `constructor` in Go.
 * [example05](./example05-interface): Create interface for multiple struct.
+* [example06](./example06-go-concurrency): How to use Goroutines in Go, share by communicating.
+
 
 [1]:https://github.com/golang/lint
 [2]:https://golang.org/cmd/gofmt/
