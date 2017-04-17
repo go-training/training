@@ -16,6 +16,10 @@ func ginEngine() *gin.Engine {
 		c.String(http.StatusOK, "Hello %s %s", firstname, lastname)
 	})
 
+	router.GET("/ping", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{"message": gin.H{"data1": "data2"}})
+	})
+
 	return router
 }
 
