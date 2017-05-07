@@ -5,6 +5,7 @@ import (
 	"time"
 )
 
+// try to run: go run -race
 func main() {
 	msg := "Let's Go"
 	go func() {
