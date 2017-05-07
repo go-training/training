@@ -6,13 +6,13 @@ import (
 )
 
 func cacl(i int, wg *sync.WaitGroup) {
+	defer wg.Done()
 	t := 0
 	for i := 1; i < 1000000; i++ {
 		t++
 	}
 
 	fmt.Println(i, t)
-	wg.Done()
 }
 
 func main() {
