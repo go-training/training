@@ -17,6 +17,10 @@ const (
 	b
 )
 
+func calc() (int, int) {
+	return 1, 2
+}
+
 func main() {
 	fmt.Println(monday)
 	fmt.Println(tuesday)
@@ -30,11 +34,13 @@ func main() {
 
 	test := true
 
-	if test, test2 := 1, 2; test+test2 < 10 {
+	if test, test2 := calc(); test+test2 < 10 {
+		fmt.Println("test:", test)
+		fmt.Println("test2:", test2)
 		fmt.Println("test + test2 < 10")
 	}
 
-	fmt.Println(test)
+	fmt.Println("test:", test)
 
 	switch a := 1; {
 	case a >= 0:
