@@ -17,6 +17,7 @@ Learning basic [Golang](https://golang.org/) in one day
 * [example11](./example11-cross-build): Learn go build constraints.
 * [example12](./example12-build-with-docker): Building minimal docker containers for go application.
 * [example13](./example13-share-golang-package-to-c): Sharing Golang packages to C and Go.
+* [example14](./example14-go-func): How to use func in go?
 
 [1]:https://github.com/golang/lint
 [2]:https://golang.org/cmd/gofmt/
