@@ -3,15 +3,11 @@ package main
 import "testing"
 
 func TestIsMyError(t *testing.T) {
-	err := MyError{"title", "message"}
+	err := ErrUserNameExist{UserName: "appleboy"}
 
-	ok := IsMyError(err)
+	ok := IsErrUserNameExist(err)
 
 	if !ok {
 		t.Fatal("testing error")
-	}
-
-	if err.Error() != "title: message" {
-		t.Fatal("message error")
 	}
 }
