@@ -2,24 +2,28 @@ package main
 
 import (
 	"fmt"
-
-	my "github.com/go-training/training/example07-errors-handler/2.custom-error/error"
 )
 
-func isSet(disable bool) (bool, error) {
-	if disable {
-		return false, my.MyError{
-			Title:   "Test Title",
-			Message: "Test Message",
-		}
+func checkUserNameExist(username string) (bool, error) {
+	if username == "appleboy" {
+		return true, ErrUserNameExist{UserName: username}
 	}
 
-	return true, nil
+	return false, nil
 }
 
 func main() {
-	_, err := isSet(true)
-	if err != nil {
+	if _, err := checkUserNameExist("foo"); err == nil {
+		fmt.Println("foo not exist")
+	}
+
+	if _, err := checkUserNameExist("appleboy"); err != nil {
 		fmt.Println(err.Error())
+	}
+
+	if _, err := checkUserNameExist("appleboy"); err != nil {
+		if ok := IsErrUserNameExist(err); ok {
+			fmt.Println("user appleboy already exist.")
+		}
 	}
 }
