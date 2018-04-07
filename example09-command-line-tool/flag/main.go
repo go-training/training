@@ -52,7 +52,6 @@ func main() {
 	if p, ok := os.LookupEnv("PORT"); ok {
 		port = p
 	}
-	flag.Parse()
 
 	if ping {
 		if err := pinger(port); err != nil {
