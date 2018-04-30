@@ -18,6 +18,8 @@ Learning basic [Golang](https://golang.org/) in one day
 * [example12](./example12-build-with-docker): Building minimal docker containers for go application.
 * [example13](./example13-share-golang-package-to-c): Sharing Golang packages to C and Go.
 * [example14](./example14-go-func): How to use func in go?
+* [example15](./example15-pass-slice-as-function-args): How to pass slice as function arguments?
+* [example16](./example16-init-func): What is init function in Go?
 
 [1]:https://github.com/golang/lint
 [2]:https://golang.org/cmd/gofmt/
