@@ -20,6 +20,7 @@ Learning basic [Golang](https://golang.org/) in one day
 * [example14](./example14-go-func): How to use func in go?
 * [example15](./example15-pass-slice-as-function-args): How to pass slice as function arguments?
 * [example16](./example16-init-func): What is init function in Go?
+* [example17](./example17-json): How to handle json in Go?
 
 [1]:https://github.com/golang/lint
 [2]:https://golang.org/cmd/gofmt/
