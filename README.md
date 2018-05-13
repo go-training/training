@@ -21,6 +21,7 @@ Learning basic [Golang](https://golang.org/) in one day
 * [example15](./example15-pass-slice-as-function-args): How to pass slice as function arguments?
 * [example16](./example16-init-func): What is init function in Go?
 * [example17](./example17-json): How to handle json in Go?
+* [example18](./example18-write-testing-and-doc): How to write testingin Go?
 
 [1]:https://github.com/golang/lint
 [2]:https://golang.org/cmd/gofmt/
