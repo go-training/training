@@ -14,7 +14,7 @@ func TestNew(t *testing.T) {
 	}
 
 	if c == nil {
-		t.Error("car should be nil")
+		t.Error("car shoud be nil")
 	}
 }
 
@@ -22,10 +22,16 @@ func TestNew(t *testing.T) {
 func TestNewWithAssert(t *testing.T) {
 	c, err := New("", 100)
 	assert.NotNil(t, err)
+	assert.Error(t, err)
 	assert.Nil(t, c)
+
+	c, err = New("foo", 100)
+	assert.Nil(t, err)
+	assert.NoError(t, err)
+	assert.NotNil(t, c)
+	assert.Equal(t, "foo", c.Name)
 }
 
-// Testing
 func TestCar_SetName(t *testing.T) {
 	type fields struct {
 		Name  string
@@ -41,7 +47,7 @@ func TestCar_SetName(t *testing.T) {
 		want   string
 	}{
 		{
-			name: "input empty name",
+			name: "no input name",
 			fields: fields{
 				Name:  "foo",
 				Price: 100,
