@@ -1,0 +1,22 @@
+workspace:
+  base: /go
+  path: src/github.com/go-training/training
+
+clone:
+  git:
+    image: plugins/git:1
+    depth: 50
+    tags: true
+
+pipeline:
+  docker_golang:
+    image: plugins/docker:17.05
+    pull: true
+    secrets: [ docker_username, docker_password ]
+    repo: appleboy/golang-http
+    context: docs
+    dockerfile: example19-deploy-with-kubernetes/Dockerfile
+    tags: [ 'latest' ]
+    when:
+      event: [ push ]
+      branch: [ master ]
