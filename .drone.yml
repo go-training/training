@@ -10,7 +10,7 @@ clone:
 
 pipeline:
   docker_golang:
-    image: plugins/docker:17.05
+    image: plugins/docker:17.12
     secrets: [ docker_username, docker_password ]
     repo: appleboy/golang-http
     context: docs
