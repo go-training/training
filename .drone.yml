@@ -18,3 +18,8 @@ pipeline:
     when:
       event: [ push ]
       branch: [ master ]
+
+    deploy:
+        image: sh4d1/drone-kubernetes
+        kubernetes_template: example19-deploy-with-kubernetes/k8s.yml
+        secrets: [ kubernetes_server, kubernetes_cert, kubernetes_token ]
