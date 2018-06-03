@@ -10,7 +10,7 @@ import (
 func sayHello(w http.ResponseWriter, r *http.Request) {
 	message := r.URL.Path
 	message = strings.TrimPrefix(message, "/")
-	message = "Hello, show the message: " + message
+	message = "Hello, got the message: " + message
 	log.Println(message)
 	w.Write([]byte(message))
 }
