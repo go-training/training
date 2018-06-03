@@ -11,7 +11,6 @@ clone:
 pipeline:
   docker_golang:
     image: plugins/docker:17.05
-    pull: true
     secrets: [ docker_username, docker_password ]
     repo: appleboy/golang-http
     context: docs
