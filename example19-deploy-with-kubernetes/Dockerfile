@@ -1,5 +1,5 @@
 FROM golang:1.10-alpine
-ADD . /go/src/hello-app
+ADD example19-deploy-with-kubernetes /go/src/hello-app
 RUN go install hello-app
 
 FROM alpine:latest
