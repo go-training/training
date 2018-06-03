@@ -13,7 +13,6 @@ pipeline:
     image: plugins/docker:17.12
     secrets: [ docker_username, docker_password ]
     repo: appleboy/golang-http
-    context: docs
     dockerfile: example19-deploy-with-kubernetes/Dockerfile
     tags: [ 'latest' ]
     when:
