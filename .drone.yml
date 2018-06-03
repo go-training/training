@@ -28,7 +28,7 @@ pipeline:
         if test "${DRONE_TAG}" = ""; then
           cd example19-deploy-with-kubernetes && go build -v -ldflags "-X main.version=${DRONE_COMMIT}" -a -o release/linux/amd64/hello
         else
-          cd example19-deploy-with-kubernetes && go build -v -ldflags "-X main.version=${DRONE_TAG##v} -a -o release/linux/amd64/hello
+          cd example19-deploy-with-kubernetes && go build -v -ldflags "-X main.version=${DRONE_TAG##v}" -a -o release/linux/amd64/hello
         fi
 
   docker_golang:
