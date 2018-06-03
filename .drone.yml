@@ -14,10 +14,9 @@ pipeline:
     secrets: [ docker_username, docker_password ]
     repo: appleboy/golang-http
     dockerfile: example19-deploy-with-kubernetes/Dockerfile
-    tags: [ 'latest' ]
+    default_tags: true
     when:
-      event: [ push ]
-      branch: [ master ]
+      event: [ push, tag ]
 
   prepare:
     image: golang:1.10
