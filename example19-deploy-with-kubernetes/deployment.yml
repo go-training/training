@@ -16,6 +16,12 @@ spec:
   # selector:
   #   app: guestbook
   #   tier: frontend
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
   template:
     metadata:
       labels:
