@@ -9,24 +9,15 @@ clone:
     tags: true
 
 pipeline:
-  docker_golang:
-    image: plugins/docker:17.12
-    secrets: [ docker_username, docker_password ]
-    repo: appleboy/golang-http
-    dockerfile: example19-deploy-with-kubernetes/Dockerfile
-    default_tags: true
-    when:
-      event: [ push, tag ]
-
   prepare:
     image: golang:1.10
+    group: build
     commands:
       - cd example19-deploy-with-kubernetes && make prepare
 
 
   build_linux_amd64:
     image: golang:1.10
-    pull: true
     group: build
     environment:
       - GOOS=linux
@@ -39,6 +30,15 @@ pipeline:
         else
           cd example19-deploy-with-kubernetes && go build -v -ldflags "-X main.version=${DRONE_TAG##v} -a -o release/linux/amd64/hello
         fi
+
+  docker_golang:
+    image: plugins/docker:17.12
+    secrets: [ docker_username, docker_password ]
+    repo: appleboy/golang-http
+    dockerfile: example19-deploy-with-kubernetes/Dockerfile
+    default_tags: true
+    when:
+      event: [ push, tag ]
 
   deploy:
     image: sh4d1/drone-kubernetes
