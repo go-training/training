@@ -11,7 +11,7 @@ spec:
     # the port that this service should serve on
   - protocol: TCP
     port: 80
-    targetPort: 8080
+    targetPort: 8081
   selector:
     app: gotraining
     tier: frontend
