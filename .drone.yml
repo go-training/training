@@ -9,15 +9,15 @@ clone:
     tags: true
 
 pipeline:
-  docker_golang:
-    image: plugins/docker:17.12
-    secrets: [ docker_username, docker_password ]
-    repo: appleboy/golang-http
-    dockerfile: example19-deploy-with-kubernetes/Dockerfile
-    tags: [ 'latest' ]
-    when:
-      event: [ push ]
-      branch: [ master ]
+  # docker_golang:
+  #   image: plugins/docker:17.12
+  #   secrets: [ docker_username, docker_password ]
+  #   repo: appleboy/golang-http
+  #   dockerfile: example19-deploy-with-kubernetes/Dockerfile
+  #   tags: [ 'latest' ]
+  #   when:
+  #     event: [ push ]
+  #     branch: [ master ]
 
   deploy:
     image: sh4d1/drone-kubernetes
