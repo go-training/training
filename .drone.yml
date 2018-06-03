@@ -21,8 +21,7 @@ pipeline:
   prepare:
     image: golang:1.10
     commands:
-      - sed -ie "s/THIS_STRING_IS_REPLACED_DURING_BUILD/$(date)/g" example19-deploy-with-kubernetes/deployment.yml
-      - cat example19-deploy-with-kubernetes/deployment.yml
+      - cd example19-deploy-with-kubernetes && make prepare
 
   deploy:
     image: sh4d1/drone-kubernetes
