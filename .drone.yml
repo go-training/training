@@ -24,12 +24,7 @@ pipeline:
       - GOARCH=amd64
       - CGO_ENABLED=0
     commands:
-      - |
-        if test "${DRONE_TAG}" = ""; then
-          cd example19-deploy-with-kubernetes && go build -v -ldflags "-X main.version=${DRONE_COMMIT}" -a -o release/linux/amd64/hello
-        else
-          cd example19-deploy-with-kubernetes && go build -v -ldflags "-X main.version=${DRONE_TAG##v}" -a -o release/linux/amd64/hello
-        fi
+      - cd example19-deploy-with-kubernetes && make build
 
   docker_golang:
     image: plugins/docker:17.12
