@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 	"strings"
 )
 
@@ -14,9 +15,14 @@ func sayHello(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(message))
 }
 func main() {
+	// use PORT environment variable, or default to 8080
+	port := "8080"
+	if fromEnv := os.Getenv("PORT"); fromEnv != "" {
+		port = fromEnv
+	}
 	http.HandleFunc("/", sayHello)
-	log.Println("Listen server on 8080 port")
-	if err := http.ListenAndServe(":8080", nil); err != nil {
+	log.Println("Listen server on " + port + " port")
+	if err := http.ListenAndServe(":"+port, nil); err != nil {
 		log.Fatal(err)
 	}
 }
