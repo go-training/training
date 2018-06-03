@@ -23,6 +23,23 @@ pipeline:
     commands:
       - cd example19-deploy-with-kubernetes && make prepare
 
+
+  build_linux_amd64:
+    image: golang:1.10
+    pull: true
+    group: build
+    environment:
+      - GOOS=linux
+      - GOARCH=amd64
+      - CGO_ENABLED=0
+    commands:
+      - |
+        if test "${DRONE_TAG}" = ""; then
+          cd example19-deploy-with-kubernetes && go build -v -ldflags "-X main.version=${DRONE_COMMIT}" -a -o release/linux/amd64/hello
+        else
+          cd example19-deploy-with-kubernetes && go build -v -ldflags "-X main.version=${DRONE_TAG##v} -a -o release/linux/amd64/hello
+        fi
+
   deploy:
     image: sh4d1/drone-kubernetes
     kubernetes_template: example19-deploy-with-kubernetes/deployment.yml
