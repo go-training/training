@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
       - name: go-hello
-        image: appleboy/golang-http:${VERSION}
+        image: appleboy/golang-http:VERSION
         imagePullPolicy: Always
         resources:
           requests:
