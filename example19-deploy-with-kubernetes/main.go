@@ -17,7 +17,7 @@ func showVersion(w http.ResponseWriter, r *http.Request) {
 func sayHello(w http.ResponseWriter, r *http.Request) {
 	message := r.URL.Path
 	message = strings.TrimPrefix(message, "/")
-	message = "Hello, drone got the message: " + message
+	message = "Hello, got the message: " + message
 	log.Println(message)
 	w.Write([]byte(message))
 }
