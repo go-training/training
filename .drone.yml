@@ -15,7 +15,6 @@ pipeline:
     commands:
       - cd example19-deploy-with-kubernetes && make prepare
 
-
   build_linux_amd64:
     image: golang:1.10
     group: build
