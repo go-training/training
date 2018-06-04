@@ -41,3 +41,4 @@ spec:
         env:
         - name: FOR_GODS_SAKE_PLEASE_REDEPLOY
           value: 'THIS_STRING_IS_REPLACED_DURING_BUILD'
+
