@@ -22,6 +22,7 @@ Learning basic [Golang](https://golang.org/) in one day
 * [example16](./example16-init-func): What is init function in Go?
 * [example17](./example17-json): How to handle json in Go?
 * [example18](./example18-write-testing-and-doc): How to write testingin Go?
+* [example19](./example19-deploy-with-kubernetes): Deploy golang app using [drone](https://drone.io/) + [kubernetes](https://kubernetes.io/).
 
 [1]:https://github.com/golang/lint
 [2]:https://golang.org/cmd/gofmt/
