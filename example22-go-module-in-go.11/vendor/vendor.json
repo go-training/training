@@ -1,0 +1,13 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "ZPkL/ha7+FVjS65ZmmlDGH8d12A=",
+			"path": "github.com/appleboy/com/random",
+			"revision": "c0b5901f9622d5256343198ed54af65af5d08cff",
+			"revisionTime": "2018-04-10T03:06:38Z"
+		}
+	],
+	"rootPath": "github.com/go-training/training/example22-go-module-in-go.11"
+}
