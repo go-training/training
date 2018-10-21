@@ -16,5 +16,6 @@ func main() {
 			"message": "pong " + stage,
 		})
 	})
+
 	r.Run(port)
 }
