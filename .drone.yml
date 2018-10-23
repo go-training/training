@@ -12,6 +12,9 @@ pipeline:
   build:
     image: golang:1.11
     pull: true
+    environment:
+      TAGS: sqlite
+      GO111MODULE: "on"
     commands:
       - cd example23-deploy-go-application-with-up && GOOS=linux GOARCH=amd64 go build -o server *.go
   up:
