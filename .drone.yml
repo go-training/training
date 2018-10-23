@@ -15,6 +15,7 @@ pipeline:
     environment:
       TAGS: sqlite
       GO111MODULE: "on"
+    secrets: [aws_secret_access_key, aws_access_key_id]
     commands:
       - cd example23-deploy-go-application-with-up && GOOS=linux GOARCH=amd64 go build -o server *.go
   up:
