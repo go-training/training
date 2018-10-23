@@ -5,7 +5,7 @@
     "ap-southeast-1"
   ],
   "hooks": {
-    "build": [],
+    "build": ["up version"],
     "clean": [
       "rm server"
     ]
