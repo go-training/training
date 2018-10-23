@@ -23,8 +23,19 @@ pipeline:
     secrets: [aws_secret_access_key, aws_access_key_id]
     stage:
       - staging
+    directory: ./example23-deploy-go-application-with-up
+    when:
+      branch: master
+
+  up:
+    image: appleboy/drone-apex-up
+    pull: true
+    secrets: [aws_secret_access_key, aws_access_key_id]
+    stage:
       - production
     directory: ./example23-deploy-go-application-with-up
+    when:
+      event: tag
 
   # prepare:
   #   image: golang:1.10
