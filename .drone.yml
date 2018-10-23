@@ -9,33 +9,41 @@ clone:
     tags: true
 
 pipeline:
-  prepare:
-    image: golang:1.10
-    group: build
-    commands:
-      - cd example19-deploy-with-kubernetes && make prepare
+  up:
+    image: appleboy/drone-apex-up
+    pull: true
+    stage:
+      - staging
+      - production
+    directory: ./example23-deploy-go-application-with-up
 
-  build_linux_amd64:
-    image: golang:1.10
-    group: build
-    environment:
-      - GOOS=linux
-      - GOARCH=amd64
-      - CGO_ENABLED=0
-    commands:
-      - cd example19-deploy-with-kubernetes && make build
+  # prepare:
+  #   image: golang:1.10
+  #   group: build
+  #   commands:
+  #     - cd example19-deploy-with-kubernetes && make prepare
 
-  docker_golang:
-    image: plugins/docker:17.12
-    secrets: [ docker_username, docker_password ]
-    repo: appleboy/golang-http
-    dockerfile: example19-deploy-with-kubernetes/Dockerfile
-    default_tags: true
-    when:
-      event: [ push, tag ]
+  # build_linux_amd64:
+  #   image: golang:1.10
+  #   group: build
+  #   environment:
+  #     - GOOS=linux
+  #     - GOARCH=amd64
+  #     - CGO_ENABLED=0
+  #   commands:
+  #     - cd example19-deploy-with-kubernetes && make build
 
-  deploy:
-    image: sh4d1/drone-kubernetes
-    kubernetes_template: example19-deploy-with-kubernetes/deployment.yml
-    kubernetes_namespace: default
-    secrets: [ kubernetes_server, kubernetes_cert, kubernetes_token ]
+  # docker_golang:
+  #   image: plugins/docker:17.12
+  #   secrets: [ docker_username, docker_password ]
+  #   repo: appleboy/golang-http
+  #   dockerfile: example19-deploy-with-kubernetes/Dockerfile
+  #   default_tags: true
+  #   when:
+  #     event: [ push, tag ]
+
+  # deploy:
+  #   image: sh4d1/drone-kubernetes
+  #   kubernetes_template: example19-deploy-with-kubernetes/deployment.yml
+  #   kubernetes_namespace: default
+  #   secrets: [ kubernetes_server, kubernetes_cert, kubernetes_token ]
