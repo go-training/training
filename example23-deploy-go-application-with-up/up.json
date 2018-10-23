@@ -6,8 +6,6 @@
   ],
   "hooks": {
     "build": ["up version"],
-    "clean": [
-      "rm server"
-    ]
+    "clean": []
   }
 }
