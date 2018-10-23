@@ -23,5 +23,11 @@ func main() {
 		})
 	})
 
+	r.GET("/v2", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": "pong " + stage + " v1 ++ production",
+		})
+	})
+
 	r.Run(port)
 }
