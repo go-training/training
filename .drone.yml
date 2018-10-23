@@ -25,6 +25,7 @@ pipeline:
       - staging
     directory: ./example23-deploy-go-application-with-up
     when:
+      event: push
       branch: master
 
   up:
