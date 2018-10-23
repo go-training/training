@@ -3,5 +3,15 @@
   "profile": "default",
   "regions": [
     "ap-southeast-1"
-  ]
+  ],
+  "hooks": {
+    "build": null,
+    "clean": [
+      "rm server"
+    ],
+    "prebuild": null,
+    "postbuild": null,
+    "predeploy": null,
+    "postdeploy": null
+  }
 }
