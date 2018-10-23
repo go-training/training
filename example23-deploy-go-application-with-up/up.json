@@ -8,10 +8,6 @@
     "build": [],
     "clean": [
       "rm server"
-    ],
-    "prebuild": null,
-    "postbuild": null,
-    "predeploy": null,
-    "postdeploy": null
+    ]
   }
 }
