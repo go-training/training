@@ -25,7 +25,13 @@ func main() {
 
 	r.GET("/v2", func(c *gin.Context) {
 		c.JSON(200, gin.H{
-			"message": "pong " + stage + " v1 ++ production",
+			"message": "pong " + stage + " v2 ++ production",
+		})
+	})
+
+	r.GET("/v3", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": "pong " + stage + " v3 ++ production",
 		})
 	})
 
