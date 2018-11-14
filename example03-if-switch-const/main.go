@@ -55,6 +55,9 @@ func main() {
 	fmt.Println(stringSlice1[2:])
 
 	stringSlice2 := make([]string, 5, 10)
+	fmt.Println("stringSlice2")
+	fmt.Println(len(stringSlice2))
+	fmt.Println(stringSlice2)
 	copy(stringSlice2, stringSlice1)
 	fmt.Println(stringSlice2[0])
 
