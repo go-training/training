@@ -25,6 +25,10 @@ Learning basic [Golang](https://golang.org/) in one day
 * [example19](./example19-deploy-with-kubernetes): Deploy golang app using [drone](https://drone.io/) + [kubernetes](https://kubernetes.io/).
 * [example20](./example20-write-benchmark): write simple benchmark.
 * [exmaple21](./example21-simple-golang-https-tls): Simple https-tls server example using [mkcert](https://github.com/FiloSottile/mkcert).
+* [exmaple22](./example22-go-module-in-go.11): How to use go module in go version 1.11.
+* [example23](./example23-deploy-go-application-with-up): Deploy go application useing [apex/up](https://github.com/apex/up) tool.
+* [example24](./example24-debug-go-code-using-vs-code): Debug golang code in vscode using [dlv](https://github.com/go-delve/delve).
+* [example25](./example25-traefik-golang-app-lets-encrypt): Running golang app using traefik & Let's Encrypt & Docker.
 
 [1]:https://github.com/golang/lint
 [2]:https://golang.org/cmd/gofmt/
