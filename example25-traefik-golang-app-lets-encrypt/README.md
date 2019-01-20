@@ -76,4 +76,4 @@ $ curl -v https://demo1.ggz.tw
 I love !, Hello World, traefik workshop!
 ```
 
-<img src="./screen.png" />
+<img src="./screen-demo.png" />
