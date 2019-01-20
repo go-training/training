@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  app_1:
+    image: appleboy/test:alpine
+    restart: always
+    networks:
+      - web
+    logging:
+      options:
+        max-size: "100k"
+        max-file: "3"
+    labels:
+      - "traefik.docker.network=web"
+      - "traefik.enable=true"
+      - "traefik.basic.frontend.rule=Host:demo1.ggz.tw"
+      - "traefik.basic.port=8080"
+      - "traefik.basic.protocol=http"
+
+  app_2:
+    image: appleboy/test:alpine
+    restart: always
+    networks:
+      - web
+    logging:
+      options:
+        max-size: "100k"
+        max-file: "3"
+    labels:
+      - "traefik.docker.network=web"
+      - "traefik.enable=true"
+      - "traefik.basic.frontend.rule=Host:demo2.ggz.tw"
+      - "traefik.basic.port=8080"
+      - "traefik.basic.protocol=http"
+
+networks:
+  web:
+    external: true
