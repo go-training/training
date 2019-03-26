@@ -34,7 +34,7 @@ class Student extends Human {
     $this->age = $age;
   }
   public function learn() {
-      echo "I need learn {$lesson}\n";
+      echo "I need learn {$this->lesson}\n";
   }
 }
 
