@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/go-training/training/example05-interface/lexus"
-	"github.com/go-training/training/example05-interface/toyota"
+	"github.com/go-training/training/example05-interface/example01/lexus"
+	"github.com/go-training/training/example05-interface/example01/toyota"
 )
 
 type car interface {
