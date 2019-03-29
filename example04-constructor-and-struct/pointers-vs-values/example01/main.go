@@ -8,10 +8,12 @@ type car struct {
 }
 
 func (c *car) SetName01(s string) {
+	fmt.Printf("SetName01: car address: %p\n", c)
 	c.name = s
 }
 
 func (c car) SetName02(s string) {
+	fmt.Printf("SetName02: car address: %p\n", &c)
 	c.name = s
 }
 
