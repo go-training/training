@@ -23,6 +23,8 @@ func main() {
 		color: "white",
 	}
 
+	fmt.Printf("car address: %p\n", toyota)
+
 	fmt.Println(toyota.name)
 	toyota.SetName01("foo")
 	fmt.Println(toyota.name)
