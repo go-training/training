@@ -83,6 +83,20 @@ func main() {
 	time.Sleep(1 * time.Second)
 	fmt.Println("==============================")
 
+	fmt.Println("Fix GOMAXPROCS")
+	runtime.GOMAXPROCS(1)
+	for i := 0; i < 10; i++ {
+		go func(i int) {
+			e.Current(i)
+			e.From(fmt.Sprintf("example%02d@gmail.com", i))
+			e.To(fmt.Sprintf("example%02d@gmail.com", i+1))
+			e.Send(i)
+		}(i)
+	}
+	time.Sleep(1 * time.Second)
+	runtime.GOMAXPROCS(runtime.NumCPU())
+	fmt.Println("==============================")
+
 	fmt.Println("Fix Result 01")
 	for i := 0; i < 10; i++ {
 		go func(i int) {
