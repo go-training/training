@@ -12,14 +12,22 @@ type logEntry struct {
 
 func main() {
 	logCh := make(chan logEntry, 100)
-	go logger(logCh)
+	doneCh := make(chan struct{})
+	go logger(logCh, doneCh)
 	logCh <- logEntry{"App Start", time.Now()}
 	logCh <- logEntry{"App End", time.Now()}
 	time.Sleep(100 * time.Millisecond)
+	doneCh <- struct{}{}
 }
 
-func logger(logCh <-chan logEntry) {
-	for v := range logCh {
-		fmt.Printf("%v: %v\n", v.time.Format("2006-01-02T01:01:01"), v.message)
+func logger(logCh <-chan logEntry, doneCh <-chan struct{}) {
+	for {
+		select {
+		case entry := <-logCh:
+			fmt.Printf("%v: %v\n", entry.time.Format("2006-01-02T01:01:01"), entry.message)
+		case <-doneCh:
+			fmt.Println("break the select loop")
+			break
+		}
 	}
 }
