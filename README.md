@@ -29,6 +29,7 @@ Learning basic [Golang](https://golang.org/) in one day
 * [example23](./example23-deploy-go-application-with-up): Deploy go application useing [apex/up](https://github.com/apex/up) tool.
 * [example24](./example24-debug-go-code-using-vs-code): Debug golang code in vscode using [dlv](https://github.com/go-delve/delve).
 * [example25](./example25-traefik-golang-app-lets-encrypt): Running golang app using [traefik & Let's Encrypt & Docker](https://docs.traefik.io/user-guide/docker-and-lets-encrypt/).
+* [example27](./example27-how-to-load-env): How to loads environment variables from `.env`.
 
 [1]:https://github.com/golang/lint
 [2]:https://golang.org/cmd/gofmt/
