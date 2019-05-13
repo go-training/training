@@ -31,6 +31,7 @@ Learning basic [Golang](https://golang.org/) in one day
 * [example25](./example25-traefik-golang-app-lets-encrypt): Running golang app using [traefik & Let's Encrypt & Docker](https://docs.traefik.io/user-guide/docker-and-lets-encrypt/).
 * [example27](./example27-how-to-load-env): How to loads environment variables from `.env`.
 * [example28](./example28-webserver-with-gracefull-shutdown): Go webserver with gracefull shutdown.
+* [example29](./example29-handle-multiple-channel): How to handle multiple Go channel?
 
 [1]:https://github.com/golang/lint
 [2]:https://golang.org/cmd/gofmt/
