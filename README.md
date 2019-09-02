@@ -32,6 +32,7 @@ Learning basic [Golang](https://golang.org/) in one day
 * [example27](./example27-how-to-load-env): How to loads environment variables from `.env`.
 * [example28](./example28-webserver-with-gracefull-shutdown): Go webserver with gracefull shutdown.
 * [example29](./example29-handle-multiple-channel): How to handle multiple Go channel?
+* [example30](./example30-context-timeout): Simplest Way to Handle Timeouts?
 
 [1]:https://github.com/golang/lint
 [2]:https://golang.org/cmd/gofmt/
