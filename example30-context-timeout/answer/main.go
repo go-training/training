@@ -1,14 +1,13 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-  "net/http"
-  "context"
-  "time"
+	"net/http"
+	"time"
 )
-
 
 type response struct {
 	UserID    int    `json:"userId"`
@@ -56,7 +55,7 @@ func helper(ctx context.Context) <-chan *callResponse {
 }
 
 func getHTTPResponse(ctx context.Context) (*response, error) {
-  select {
+	select {
 	case <-ctx.Done():
 		return nil, fmt.Errorf("context timeout, ran out of time")
 	case respChan := <-helper(ctx):
