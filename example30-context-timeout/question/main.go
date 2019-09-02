@@ -8,14 +8,14 @@ import (
 )
 
 
-type Response struct {
+type response struct {
 	UserID    int    `json:"userId"`
 	ID        int    `json:"id"`
 	Title     string `json:"title"`
 	Completed bool   `json:"completed"`
 }
 
-func GetHttpResponse() (*Response, error) {
+func getHttpResponse() (*response, error) {
 	resp, err := http.Get("https://jsonplaceholder.typicode.com/todos/1")
 
 	if err != nil {
@@ -41,7 +41,7 @@ func GetHttpResponse() (*Response, error) {
 
 func main() {
 
-	res, err := GetHttpResponse()
+	res, err := getHttpResponse()
 
 	if err != nil {
 		fmt.Printf("err %v", err)
