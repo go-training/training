@@ -7,7 +7,6 @@ import (
 	"net/http"
 )
 
-
 type response struct {
 	UserID    int    `json:"userId"`
 	ID        int    `json:"id"`
