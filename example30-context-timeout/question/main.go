@@ -15,7 +15,7 @@ type response struct {
 	Completed bool   `json:"completed"`
 }
 
-func getHttpResponse() (*response, error) {
+func getHTTPResponse() (*response, error) {
 	resp, err := http.Get("https://jsonplaceholder.typicode.com/todos/1")
 
 	if err != nil {
@@ -41,7 +41,7 @@ func getHttpResponse() (*response, error) {
 
 func main() {
 
-	res, err := getHttpResponse()
+	res, err := getHTTPResponse()
 
 	if err != nil {
 		fmt.Printf("err %v", err)
