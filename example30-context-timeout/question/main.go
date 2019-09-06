@@ -28,7 +28,7 @@ func getHTTPResponse() (*response, error) {
 		return nil, fmt.Errorf("error in reading response")
 	}
 
-	structResp := &Response{}
+	structResp := &response{}
 	err = json.Unmarshal(byteResp, structResp)
 
 	if err != nil {
