@@ -33,6 +33,7 @@ Learning basic [Golang](https://golang.org/) in one day
 * [example28](./example28-webserver-with-gracefull-shutdown): Go webserver with gracefull shutdown.
 * [example29](./example29-handle-multiple-channel): How to handle multiple Go channel?
 * [example30](./example30-context-timeout): Simplest Way to Handle Timeouts?
+* [example31](./example31-job-queue): How to implements a simple job queue?
 
 [1]:https://github.com/golang/lint
 [2]:https://golang.org/cmd/gofmt/
