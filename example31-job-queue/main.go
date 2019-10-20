@@ -23,7 +23,7 @@ func enqueue(job int, jobChan chan<- int) bool {
 }
 
 func main() {
-	// make a channel with a capacity of 1024.
+	// make a channel with a capacity of 1.
 	jobChan := make(chan int, 1)
 
 	// start the worker
