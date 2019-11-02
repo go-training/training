@@ -37,9 +37,9 @@ func main() {
 	// fmt.Println("enqueue the job 3")
 	// jobChan <- 3
 
-	fmt.Println(enqueue(1, jobChan))
-	fmt.Println(enqueue(2, jobChan))
-	fmt.Println(enqueue(3, jobChan))
+	fmt.Println(enqueue(1, jobChan)) // true
+	fmt.Println(enqueue(2, jobChan)) // true
+	fmt.Println(enqueue(3, jobChan)) // false
 
 	fmt.Println("waiting the jobs")
 	time.Sleep(10 * time.Second)

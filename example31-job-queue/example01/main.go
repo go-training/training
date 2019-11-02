@@ -26,7 +26,9 @@ func main() {
 	fmt.Println("enqueue the job 2")
 	jobChan <- 2
 	fmt.Println("enqueue the job 3")
-	jobChan <- 3
+	go func() {
+		jobChan <- 3
+	}()
 
 	fmt.Println("waiting the jobs")
 	time.Sleep(10 * time.Second)
