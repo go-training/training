@@ -11,5 +11,7 @@ func main() {
 		fmt.Println("random 01")
 	case <-ch:
 		fmt.Println("random 02")
+	default:
+		fmt.Println("exit")
 	}
 }

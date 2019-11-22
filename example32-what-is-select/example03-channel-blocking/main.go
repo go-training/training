@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	ch := make(chan int, 1)
+	ch := make(chan int, 2)
 	ch <- 1
 	select {
 	case ch <- 2:

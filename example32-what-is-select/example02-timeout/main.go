@@ -8,7 +8,7 @@ import (
 func main() {
 	timeout := make(chan bool, 1)
 	go func() {
-		time.Sleep(1 * time.Second)
+		time.Sleep(2 * time.Second)
 		timeout <- true
 	}()
 	ch := make(chan int)
