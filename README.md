@@ -34,6 +34,7 @@ Learning basic [Golang](https://golang.org/) in one day
 * [example29](./example29-handle-multiple-channel): How to handle multiple Go channel?
 * [example30](./example30-context-timeout): Simplest Way to Handle Timeouts?
 * [example31](./example31-job-queue): How to implements a simple job queue? [Youtube](https://www.youtube.com/watch?v=wvdbobFiXNg)
+* [example32](./example32-what-is-select): four tips with `select` in golang.
 
 [1]:https://github.com/golang/lint
 [2]:https://golang.org/cmd/gofmt/
