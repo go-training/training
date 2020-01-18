@@ -25,18 +25,14 @@ func addByShareMemory(n int) []int {
 	return ints
 }
 
-// WriteOnly serves the purpose of demonstrating
-// a method that writes to a write-only channel.
-func WriteOnly(channel chan<- int, order int) {
-	channel <- order
-}
-
 func addByShareCommunicate(n int) []int {
 	var ints []int
 	channel := make(chan int, n)
 
 	for i := 0; i < n; i++ {
-		go WriteOnly(channel, i)
+		go func(channel chan<- int, order int) {
+			channel <- order
+		}(channel, i)
 	}
 
 	for i := range channel {
