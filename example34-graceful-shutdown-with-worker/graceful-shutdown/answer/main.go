@@ -6,6 +6,7 @@ import (
 	"math/rand"
 	"os"
 	"os/signal"
+	"sync"
 	"syscall"
 	"time"
 )
@@ -72,7 +73,8 @@ func (c *Consumer) process(num, job int) {
 	log.Println("worker:", num, " job value:", job)
 }
 
-func (c *Consumer) worker(ctx context.Context, num int) {
+func (c *Consumer) worker(ctx context.Context, num int, wg *sync.WaitGroup) {
+	defer wg.Done()
 	log.Println("start the worker", num)
 	for {
 		select {
@@ -93,6 +95,8 @@ const poolSize = 2
 
 func main() {
 	finished := make(chan bool)
+	wg := &sync.WaitGroup{}
+	wg.Add(poolSize)
 	// create the consumer
 	consumer := Consumer{
 		inputChan: make(chan int, 10),
@@ -101,11 +105,12 @@ func main() {
 
 	ctx := withContextFunc(context.Background(), func() {
 		log.Println("cancel from ctrl+c event")
-		finished <- true
+		wg.Wait()
+		close(finished)
 	})
 
 	for i := 0; i < poolSize; i++ {
-		go consumer.worker(ctx, i)
+		go consumer.worker(ctx, i, wg)
 	}
 
 	go consumer.startConsumer(ctx)
@@ -119,4 +124,5 @@ func main() {
 	}()
 
 	<-finished
+	log.Println("Game over")
 }
