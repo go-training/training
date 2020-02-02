@@ -110,11 +110,13 @@ func main() {
 
 	go consumer.startConsumer(ctx)
 
-	consumer.queue(1)
-	consumer.queue(2)
-	consumer.queue(3)
-	consumer.queue(4)
-	consumer.queue(5)
+	go func() {
+		consumer.queue(1)
+		consumer.queue(2)
+		consumer.queue(3)
+		consumer.queue(4)
+		consumer.queue(5)
+	}()
 
 	<-stop
 	// time.Sleep(10 * time.Second)
