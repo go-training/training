@@ -12,6 +12,11 @@ type Consumer struct {
 	jobsChan  chan int
 }
 
+func getRandomTime() int {
+	rand.Seed(time.Now().UnixNano())
+	return rand.Intn(5)
+}
+
 func (c *Consumer) queue(input int) {
 	c.jobsChan <- input
 	fmt.Println("already send input value:", input)
@@ -19,8 +24,7 @@ func (c *Consumer) queue(input int) {
 
 func (c *Consumer) worker(num int) {
 	for job := range c.jobsChan {
-		rand.Seed(time.Now().UnixNano())
-		n := rand.Intn(10)
+		n := getRandomTime()
 		fmt.Printf("Sleeping %d seconds...\n", n)
 		time.Sleep(time.Duration(n) * time.Second)
 		fmt.Println("worker:", num, " job value:", job)
