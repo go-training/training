@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 func main() {
 	ch := make(chan int, 2)
@@ -13,4 +16,12 @@ func main() {
 	for n := range ch {
 		fmt.Println(n)
 	}
+
+	// go func() {
+	// 	for n := range ch {
+	// 		fmt.Println(n)
+	// 	}
+	// }()
+
+	time.Sleep(1 * time.Second)
 }
