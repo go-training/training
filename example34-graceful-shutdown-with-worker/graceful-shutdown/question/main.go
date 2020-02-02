@@ -31,8 +31,8 @@ func withContextFunc(ctx context.Context, f func()) context.Context {
 		select {
 		case <-ctx.Done():
 		case <-c:
-			f()
 			cancel()
+			f()
 		}
 	}()
 
@@ -92,7 +92,7 @@ func (c *Consumer) worker(ctx context.Context, num int) {
 const poolSize = 2
 
 func main() {
-	// stop := make(chan bool)
+	stop := make(chan bool)
 	// create the consumer
 	consumer := Consumer{
 		inputChan: make(chan int, 10),
@@ -101,7 +101,7 @@ func main() {
 
 	ctx := withContextFunc(context.Background(), func() {
 		log.Println("cancel from ctrl+c event")
-		// stop <- true
+		stop <- true
 	})
 
 	for i := 0; i < poolSize; i++ {
@@ -116,6 +116,6 @@ func main() {
 	consumer.queue(4)
 	consumer.queue(5)
 
-	// <-stop
-	time.Sleep(10 * time.Second)
+	<-stop
+	// time.Sleep(10 * time.Second)
 }
