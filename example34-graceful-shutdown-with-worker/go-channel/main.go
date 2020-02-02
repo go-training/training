@@ -17,9 +17,18 @@ func getRandomTime() int {
 	return rand.Intn(5)
 }
 
-func (c *Consumer) queue(input int) {
+func (c *Consumer) queue(input int) bool {
 	c.jobsChan <- input
 	fmt.Println("already send input value:", input)
+	return true
+
+	// select {
+	// case c.jobsChan <- input:
+	// 	fmt.Println("already send input value:", input)
+	// 	return true
+	// default:
+	// 	return false
+	// }
 }
 
 func (c *Consumer) worker(num int) {
