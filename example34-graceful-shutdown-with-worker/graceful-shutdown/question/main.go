@@ -92,7 +92,7 @@ func (c *Consumer) worker(ctx context.Context, num int) {
 const poolSize = 2
 
 func main() {
-	stop := make(chan bool)
+	finished := make(chan bool)
 	// create the consumer
 	consumer := Consumer{
 		inputChan: make(chan int, 10),
@@ -101,7 +101,7 @@ func main() {
 
 	ctx := withContextFunc(context.Background(), func() {
 		log.Println("cancel from ctrl+c event")
-		stop <- true
+		close(finished)
 	})
 
 	for i := 0; i < poolSize; i++ {
@@ -118,6 +118,6 @@ func main() {
 		consumer.queue(5)
 	}()
 
-	<-stop
+	<-finished
 	// time.Sleep(10 * time.Second)
 }
