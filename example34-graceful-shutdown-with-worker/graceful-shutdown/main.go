@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"math/rand"
 	"os"
@@ -43,7 +42,7 @@ func withContextFunc(ctx context.Context, f func()) context.Context {
 func (c *Consumer) queue(input int) bool {
 	select {
 	case c.inputChan <- input:
-		fmt.Println("already send input value:", input)
+		log.Println("already send input value:", input)
 		return true
 	default:
 		return false
@@ -66,21 +65,25 @@ func (c Consumer) startConsumer(ctx context.Context) {
 	}
 }
 
+func (c *Consumer) process(num, job int) {
+	n := getRandomTime()
+	log.Printf("Sleeping %d seconds...\n", n)
+	time.Sleep(time.Duration(n) * time.Second)
+	log.Println("worker:", num, " job value:", job)
+}
+
 func (c *Consumer) worker(ctx context.Context, num int) {
-	fmt.Println("start the worker", num)
+	log.Println("start the worker", num)
 	for {
 		select {
 		case job := <-c.jobsChan:
 			if ctx.Err() != nil {
-				fmt.Println("get next job", job, "and close the worker", num)
+				log.Println("get next job", job, "and close the worker", num)
 				return
 			}
-			n := getRandomTime()
-			fmt.Printf("Sleeping %d seconds...\n", n)
-			time.Sleep(time.Duration(n) * time.Second)
-			fmt.Println("worker:", num, " job value:", job)
+			c.process(num, job)
 		case <-ctx.Done():
-			fmt.Println("close the worker", num)
+			log.Println("close the worker", num)
 			return
 		}
 	}
@@ -89,6 +92,7 @@ func (c *Consumer) worker(ctx context.Context, num int) {
 const poolSize = 2
 
 func main() {
+	// stop := make(chan bool)
 	// create the consumer
 	consumer := Consumer{
 		inputChan: make(chan int, 10),
@@ -96,7 +100,8 @@ func main() {
 	}
 
 	ctx := withContextFunc(context.Background(), func() {
-		log.Println("cancel from context")
+		log.Println("cancel from ctrl+c event")
+		// stop <- true
 	})
 
 	for i := 0; i < poolSize; i++ {
@@ -111,5 +116,6 @@ func main() {
 	consumer.queue(4)
 	consumer.queue(5)
 
+	// <-stop
 	time.Sleep(10 * time.Second)
 }
