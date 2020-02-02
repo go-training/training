@@ -31,7 +31,7 @@ func (c *Consumer) worker(num int) {
 	}
 }
 
-const poolSize = 1
+const poolSize = 2
 
 func main() {
 	// create the consumer
@@ -48,6 +48,7 @@ func main() {
 	consumer.queue(2)
 	consumer.queue(3)
 	consumer.queue(4)
+	consumer.queue(5)
 
 	time.Sleep(5 * time.Second)
 }
