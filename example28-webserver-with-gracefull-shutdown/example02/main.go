@@ -24,7 +24,15 @@ func main() {
 	router := http.NewServeMux() // here you could also go with third party packages to create a router
 	// Register your routes
 	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		time.Sleep(15 * time.Second)
+		stop := 22
+		for {
+			time.Sleep(1 * time.Second)
+			log.Println("stop number: ", stop)
+			stop--
+			if stop == 0 {
+				break
+			}
+		}
 		w.WriteHeader(http.StatusOK)
 	})
 
@@ -36,9 +44,9 @@ func main() {
 		Addr:         listenAddr,
 		Handler:      router,
 		ErrorLog:     logger,
-		ReadTimeout:  30 * time.Second,
-		WriteTimeout: 30 * time.Second,
-		IdleTimeout:  30 * time.Second,
+		ReadTimeout:  3 * time.Minute,
+		WriteTimeout: 3 * time.Minute,
+		IdleTimeout:  3 * time.Minute,
 	}
 
 	done := make(chan bool, 1)
