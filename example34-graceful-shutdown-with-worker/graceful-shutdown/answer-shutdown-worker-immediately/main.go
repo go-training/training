@@ -121,6 +121,11 @@ func main() {
 		consumer.queue(3)
 		consumer.queue(4)
 		consumer.queue(5)
+		consumer.queue(6)
+		consumer.queue(7)
+		consumer.queue(8)
+		consumer.queue(9)
+		consumer.queue(10)
 	}()
 
 	<-finished
