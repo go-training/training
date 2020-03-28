@@ -54,11 +54,11 @@ func (c Consumer) startConsumer(ctx context.Context) {
 	for {
 		select {
 		case job := <-c.inputChan:
+			c.jobsChan <- job
 			if ctx.Err() != nil {
 				close(c.jobsChan)
 				return
 			}
-			c.jobsChan <- job
 		case <-ctx.Done():
 			close(c.jobsChan)
 			return
