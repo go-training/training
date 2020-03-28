@@ -54,15 +54,14 @@ func (c Consumer) startConsumer(ctx context.Context) {
 	for {
 		select {
 		case job := <-c.inputChan:
-			if ctx.Err() != nil {
-				close(c.jobsChan)
-				return
-			}
-
 			select {
 			case c.jobsChan <- job:
 			default:
 				log.Println("job channel has been closed. num:", job)
+			}
+			if ctx.Err() != nil {
+				close(c.jobsChan)
+				return
 			}
 		case <-ctx.Done():
 			close(c.jobsChan)
@@ -85,6 +84,8 @@ func (c *Consumer) worker(num int, wg *sync.WaitGroup) {
 	for job := range c.jobsChan {
 		c.process(num, job)
 	}
+
+	log.Printf("Stop the worker %d\n", num)
 }
 
 const poolSize = 5
