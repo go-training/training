@@ -37,6 +37,7 @@ Learning basic [Golang](https://golang.org/) in one day
 * [example32](./example32-what-is-select): four tips with `select` in golang.
 * [example33](./example33-share-memory-by-communicating): share memory by communicating.
 * [example34](./example34-graceful-shutdown-with-worker): graceful shutdown with multiple workers.
+* [example35](./example35-goroutine-with-context): introduction to context package.
 
 [1]:https://github.com/golang/lint
 [2]:https://golang.org/cmd/gofmt/
