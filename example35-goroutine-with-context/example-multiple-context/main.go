@@ -20,16 +20,14 @@ func main() {
 }
 
 func worker(ctx context.Context, name string) {
-	go func() {
-		for {
-			select {
-			case <-ctx.Done():
-				fmt.Println(name, "got the stop channel")
-				return
-			default:
-				fmt.Println(name, "still working")
-				time.Sleep(1 * time.Second)
-			}
+	for {
+		select {
+		case <-ctx.Done():
+			fmt.Println(name, "got the stop channel")
+			return
+		default:
+			fmt.Println(name, "still working")
+			time.Sleep(1 * time.Second)
 		}
-	}()
+	}
 }
