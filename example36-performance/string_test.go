@@ -4,28 +4,14 @@ import (
 	"fmt"
 	"strings"
 	"testing"
-	"time"
 	"unsafe"
 )
-
-type foo struct {
-	ID        string
-	Addr      string
-	CreatedAt time.Time
-}
-
-var bar = foo{
-	ID:   "1234567890",
-	Addr: "1234567890",
-}
 
 func BenchmarkString01(b *testing.B) {
 	b.ReportAllocs()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		s := bar.ID
-		s += " " + bar.Addr
-		_ = s
+		_ = string01(bar)
 	}
 }
 
