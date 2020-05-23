@@ -1,70 +1,10 @@
-workspace:
-  base: /go
-  path: src/github.com/go-training/training
-
-clone:
-  git:
-    image: plugins/git:1
-    depth: 50
-    tags: true
-
-pipeline:
-  build:
-    image: golang:1.11
-    pull: true
-    environment:
-      TAGS: sqlite
-      GO111MODULE: "on"
-    commands:
-      - cd example23-deploy-go-application-with-up && GOOS=linux GOARCH=amd64 go build -o server *.go
-  up:
-    image: appleboy/drone-apex-up
-    pull: true
-    secrets: [aws_secret_access_key, aws_access_key_id]
-    stage:
-      - staging
-    directory: ./example23-deploy-go-application-with-up
-    when:
-      event: push
-      branch: master
-
-  up:
-    image: appleboy/drone-apex-up
-    pull: true
-    secrets: [aws_secret_access_key, aws_access_key_id]
-    stage:
-      - production
-    directory: ./example23-deploy-go-application-with-up
-    when:
-      event: tag
-
-  # prepare:
-  #   image: golang:1.10
-  #   group: build
-  #   commands:
-  #     - cd example19-deploy-with-kubernetes && make prepare
-
-  # build_linux_amd64:
-  #   image: golang:1.10
-  #   group: build
-  #   environment:
-  #     - GOOS=linux
-  #     - GOARCH=amd64
-  #     - CGO_ENABLED=0
-  #   commands:
-  #     - cd example19-deploy-with-kubernetes && make build
-
-  # docker_golang:
-  #   image: plugins/docker:17.12
-  #   secrets: [ docker_username, docker_password ]
-  #   repo: appleboy/golang-http
-  #   dockerfile: example19-deploy-with-kubernetes/Dockerfile
-  #   default_tags: true
-  #   when:
-  #     event: [ push, tag ]
-
-  # deploy:
-  #   image: sh4d1/drone-kubernetes
-  #   kubernetes_template: example19-deploy-with-kubernetes/deployment.yml
-  #   kubernetes_namespace: default
-  #   secrets: [ kubernetes_server, kubernetes_cert, kubernetes_token ]
+---
+kind: pipeline
+name: testing
+steps:
+- name: test-vet
+  image: golang:1.14
+  environment:
+    GO111MODULE: "on"
+  commands:
+    - go test -v -bench=. ./example36-performance/...
