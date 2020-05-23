@@ -4,7 +4,7 @@ Performance result with differnet concat string in Golang.
 
 ## Result
 
-```
+```sh
 + go test -v -bench=. ./example36-performance/...
 goos: linux
 goarch: amd64
