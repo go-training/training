@@ -24,7 +24,7 @@ func main() {
 				<-limitCh
 			}()
 			waitTime := rand.Int31n(1000)
-			fmt.Println("wait time:", waitTime, "millisecond")
+			fmt.Println("job:", val, "wait time:", waitTime, "millisecond")
 			time.Sleep(time.Duration(waitTime) * time.Millisecond)
 			found <- val
 		}(i)
