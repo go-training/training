@@ -40,6 +40,7 @@ Learning basic [Golang](https://golang.org/) in one day
 * [example35](./example35-goroutine-with-context): introduction to context package.
 * [example36](./example36-performance): performance result with differnet concat string method.
 * [example38](./example38-concurrency-is-still-not-easy): concurrency is still not easy. [English Blog](https://utcc.utoronto.ca/~cks/space/blog/programming/GoConcurrencyStillNotEasy), [Chinese Blog](https://blog.wu-boy.com/2020/09/limit-concurrency-in-golang/)
+* [example39](./example39-select-random-channel): select random channle value?
 
 [1]:https://github.com/golang/lint
 [2]:https://golang.org/cmd/gofmt/
