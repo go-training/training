@@ -2,20 +2,29 @@ package main
 
 import (
 	"embed"
+	"html/template"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	//go:embed assets/*
+	//go:embed assets/* templates/*
 	var f embed.FS
 
 	router := gin.Default()
-	router.LoadHTMLGlob("templates/*")
-	router.GET("index", func(c *gin.Context) {
+	// router.LoadHTMLGlob("templates/*")
+	templ := template.Must(template.New("").ParseFS(f, "templates/*.tmpl", "templates/foo/*.tmpl"))
+	router.SetHTMLTemplate(templ)
+	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.tmpl", gin.H{
 			"title": "Main website",
+		})
+	})
+
+	router.GET("foo", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "bar.tmpl", gin.H{
+			"title": "Foo website",
 		})
 	})
 
