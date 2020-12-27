@@ -13,7 +13,10 @@ func main() {
 	var f embed.FS
 
 	router := gin.Default()
-	// router.LoadHTMLGlob("templates/*")
+
+	// example: /public/assets/images/example.png
+	router.StaticFS("/public", http.FS(f))
+
 	templ := template.Must(template.New("").ParseFS(f, "templates/*.tmpl", "templates/foo/*.tmpl"))
 	router.SetHTMLTemplate(templ)
 	router.GET("/", func(c *gin.Context) {
@@ -22,7 +25,7 @@ func main() {
 		})
 	})
 
-	router.GET("foo", func(c *gin.Context) {
+	router.GET("/foo", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "bar.tmpl", gin.H{
 			"title": "Foo website",
 		})
