@@ -1,6 +1,8 @@
 package main
 
-import "embed"
+import (
+	"embed"
+)
 
 func main() {
 	//go:embed hello.txt
@@ -15,5 +17,4 @@ func main() {
 	var f embed.FS
 	data, _ := f.ReadFile("hello.txt")
 	print(string(data))
-
 }
