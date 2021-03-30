@@ -42,6 +42,7 @@ Learning basic [Golang](https://golang.org/) in one day
 * [example38](./example38-concurrency-is-still-not-easy): concurrency is still not easy. [English Blog](https://utcc.utoronto.ca/~cks/space/blog/programming/GoConcurrencyStillNotEasy), [Chinese Blog](https://blog.wu-boy.com/2020/09/limit-concurrency-in-golang/)
 * [example39](./example39-select-random-channel): select random channel value?
 * [example40](./example40-embedding-files): [go 1.16](https://tip.golang.org/doc/go1.16) support [Embedding Files](https://tip.golang.org/pkg/embed/), [Chinese Blog](https://blog.wu-boy.com/2020/12/embedding-files-in-go-1-16/)
+* [example41](./example41-using-buffer-channel-signal) why use buffered channel signal? [Chinese Blog](https://blog.wu-boy.com/2021/03/why-use-buffered-channel-in-signal-notify/)
 
 [1]:https://github.com/golang/lint
 [2]:https://golang.org/cmd/gofmt/
