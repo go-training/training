@@ -1,6 +1,6 @@
 # Question
 
-Please use three goroutines to run 100 times each, and output cat, dog, bird in order
+Please use three goroutines to run 10 times each, and output cat, dog, bird in order
 
 1. goroutine 01 -> println("cat")
 2. goroutine 02 -> println("dog")
