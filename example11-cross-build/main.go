@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 
-	"github.com/go-training/training/example13/hello"
-	"github.com/go-training/training/example13/hello2"
-	"github.com/go-training/training/example13/hello3"
+	"github.com/go-training/training/example11-cross-build/hello"
+	"github.com/go-training/training/example11-cross-build/hello2"
+	"github.com/go-training/training/example11-cross-build/hello3"
 )
 
 func main() {
