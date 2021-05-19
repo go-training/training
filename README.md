@@ -1,5 +1,7 @@
 # Golang Training
 
+[![Build Status](https://cloud.drone.io/api/badges/go-training/training/status.svg)](https://cloud.drone.io/go-training/training)
+
 Learning basic [Golang](https://golang.org/) in one day
 
 ## Example code
