@@ -46,6 +46,7 @@ Learning basic [Golang](https://golang.org/) in one day
 * [example39](./example39-select-random-channel): select random channel value?
 * [example40](./example40-embedding-files): [go 1.16](https://tip.golang.org/doc/go1.16) support [Embedding Files](https://tip.golang.org/pkg/embed/), [Chinese Blog](https://blog.wu-boy.com/2020/12/embedding-files-in-go-1-16/)
 * [example41](./example41-using-buffer-channel-signal) why use buffered channel signal? [Chinese Blog](https://blog.wu-boy.com/2021/03/why-use-buffered-channel-in-signal-notify/)
+* [example42](./example42-three-goroutine-interview/README.md) Please use three goroutines to run 10 times each, and output `cat`, `dog`, `bird` in order
 
 [1]:https://github.com/golang/lint
 [2]:https://golang.org/cmd/gofmt/
