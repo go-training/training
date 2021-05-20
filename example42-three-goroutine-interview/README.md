@@ -15,3 +15,7 @@ bird
 cat
 ...
 ```
+
+## solution 01
+
+use unbuffered channel. see [the example](./solution01/main.go).
