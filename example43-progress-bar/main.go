@@ -11,8 +11,8 @@ import (
 
 func main() {
 
-	var limit int64 = 1024 * 1024 * 500
-	// we will copy 200 Mb from /dev/rand to /dev/null
+	var limit int64 = 1024 * 1024 * 10000
+	// we will copy 10 Gb from /dev/rand to /dev/null
 	reader := io.LimitReader(rand.Reader, limit)
 	writer := ioutil.Discard
 
