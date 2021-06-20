@@ -69,7 +69,7 @@ func main() {
 
 	// send job
 	go func() {
-		for i := 0; i < 40; i++ {
+		for i := 0; i < 50; i++ {
 			wg.Add(1)
 			select {
 			case jobChan <- i:
@@ -86,6 +86,7 @@ func main() {
 
 	select {
 	case <-ctx.Done():
+		time.Sleep(1 * time.Second)
 		log.Println("server down")
 	}
 }
