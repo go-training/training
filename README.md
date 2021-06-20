@@ -48,6 +48,7 @@ Learning basic [Golang](https://golang.org/) in one day
 * [example41](./example41-using-buffer-channel-signal) why use buffered channel signal? [Chinese Blog](https://blog.wu-boy.com/2021/03/why-use-buffered-channel-in-signal-notify/)
 * [example42](./example42-three-goroutine-interview/README.md) Please use three goroutines to run 10 times each, and output `cat`, `dog`, `bird` in order
 * [example43](./example43-progress-bar/README.md) graceful shutdown with progress bar. [Chinese Blog](https://blog.wu-boy.com/2021/05/graceful-shutdown-with-progress-bar-in-golang/)
+* [example44](./example44-signal-with-docker-compose) graceful stop service using docker-compose. [Chinese Blog](https://blog.wu-boy.com/2021/06/graceful-stop-service-using-docker-compose-in-golang/)
 
 [1]:https://github.com/golang/lint
 [2]:https://golang.org/cmd/gofmt/
