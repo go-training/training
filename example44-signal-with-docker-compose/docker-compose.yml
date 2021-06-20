@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  app:
+    image: app:0.0.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    logging:
+      options:
+        max-size: "100k"
+        max-file: "3"
