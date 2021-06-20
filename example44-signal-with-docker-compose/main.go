@@ -14,7 +14,8 @@ func withContextFunc(ctx context.Context, f func()) context.Context {
 	ctx, cancel := context.WithCancel(ctx)
 	go func() {
 		c := make(chan os.Signal)
-		signal.Notify(c, syscall.SIGINT, syscall.SIGTERM)
+		// register for interupt (Ctrl+C) and SIGTERM (docker)
+		signal.Notify(c, syscall.SIGINT, syscall.SIGTERM, syscall.SIGKILL)
 		defer signal.Stop(c)
 
 		select {

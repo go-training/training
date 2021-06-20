@@ -8,6 +8,7 @@ services:
       dockerfile: Dockerfile
     restart: always
     stop_signal: SIGINT
+    stop_grace_period: 30s
     logging:
       options:
         max-size: "100k"
