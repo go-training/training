@@ -49,6 +49,7 @@ Learning basic [Golang](https://golang.org/) in one day
 * [example42](./example42-three-goroutine-interview/README.md) Please use three goroutines to run 10 times each, and output `cat`, `dog`, `bird` in order
 * [example43](./example43-progress-bar/README.md) graceful shutdown with progress bar. [Chinese Blog](https://blog.wu-boy.com/2021/05/graceful-shutdown-with-progress-bar-in-golang/)
 * [example44](./example44-signal-with-docker-compose) graceful stop service using docker-compose. [Chinese Blog](https://blog.wu-boy.com/2021/06/graceful-stop-service-using-docker-compose-in-golang/)
+* [example45](./example45-go-1.18-generics) introduction to go1.18 generics. [Chinese Blog](https://blog.wu-boy.com/2022/02/introduction-to-golang-1-18-generics/)
 
 [1]:https://github.com/golang/lint
 [2]:https://golang.org/cmd/gofmt/
