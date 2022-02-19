@@ -1,73 +1,51 @@
 package main
 
-import "fmt"
+// Comparable constraint
 
-type stringer interface {
-	String() string
-}
+import (
+	"constraints"
+	"errors"
+	"fmt"
+)
 
-func concat[T stringer](vals []T) string {
-	result := ""
-	for _, val := range vals {
-		result += val.String()
-	}
-	return result
-}
-
-type car struct {
-	price int
-}
-
-func (c car) String() string {
-	return fmt.Sprintf("%d", c.price)
-}
-
-type plusser interface {
-	Plus(string) string
-}
-
-func cconcatTo[S stringer, P plusser](s []S, p []P) []string {
-	r := make([]string, len(s))
+func indexOfInteger[T constraints.Integer](s []T, x T) (int, error) {
 	for i, v := range s {
-		r[i] = p[i].Plus(v.String())
+		// v and x are type T, which has the comparable
+		// constraint, so we can use == here.
+		if v == x {
+			return i, nil
+		}
 	}
-	return r
+	return 0, errors.New("not found")
 }
 
-type foo struct {
-	name string
-}
-
-func (c foo) String() string {
-	return c.name
-}
-
-type plus map[string]string
-
-func (p plus) Plus(k string) string {
-	if v, ok := p[k]; ok {
-		return v
+func indexOfFloat[T constraints.Float](s []T, x T) (int, error) {
+	for i, v := range s {
+		// v and x are type T, which has the comparable
+		// constraint, so we can use == here.
+		if v == x {
+			return i, nil
+		}
 	}
-	return ""
+	return 0, errors.New("not found")
+}
+
+func sum[T constraints.Ordered](s []T) T {
+	var total T
+	for _, v := range s {
+		total += v
+	}
+	return total
 }
 
 func main() {
-	// exmaple01
-	val := concat([]stringer{
-		car{price: 1},
-		car{price: 2},
-	})
+	i, err := indexOfInteger([]int{1, 2, 3}, 3)
+	fmt.Println(i, err)
 
-	fmt.Println(val)
+	i, err = indexOfFloat([]float64{1.1, 2.2, 3.3, 4.4}, 4.4)
+	fmt.Println(i, err)
 
-	// example02
-	p := plus{
-		"a": "100",
-		"b": "200",
-	}
-
-	fmt.Println(cconcatTo([]stringer{
-		foo{name: "a"},
-		foo{name: "b"},
-	}, []plusser{p, p}))
+	fmt.Println(sum([]int{1, 2, 3, 4}))
+	fmt.Println(sum([]float64{1.1, 2.2, 3.3, 4.4}))
+	fmt.Println(sum([]float32{1.1, 2.2, 3.3, 4.4, 5.5}))
 }
