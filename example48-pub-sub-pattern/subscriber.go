@@ -22,12 +22,21 @@ func (s *subscriber) run(ctx context.Context) {
 	for {
 		select {
 		case msg := <-s.handler:
-			log.Println(msg.data)
+			log.Println(s.name, string(msg.data))
 		case <-s.quit:
 			return
 		case <-ctx.Done():
 			return
 		}
+	}
+}
+
+func (s *subscriber) publish(ctx context.Context, msg *message) {
+	select {
+	case <-ctx.Done():
+		return
+	case s.handler <- msg:
+	default:
 	}
 }
 
