@@ -48,7 +48,7 @@ func (h *hub) unsubscribe(ctx context.Context, s *subscriber) error {
 	return nil
 }
 
-func (h *hub) Subscribers() int {
+func (h *hub) subscribers() int {
 	h.Lock()
 	c := len(h.subs)
 	h.Unlock()
