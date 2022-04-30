@@ -27,6 +27,7 @@ func (h *hub) subscribe(ctx context.Context, s *subscriber) error {
 
 	go func() {
 		select {
+		case <-s.quit:
 		case <-ctx.Done():
 			h.Lock()
 			delete(h.subs, s)
@@ -36,6 +37,14 @@ func (h *hub) subscribe(ctx context.Context, s *subscriber) error {
 
 	go s.run(ctx)
 
+	return nil
+}
+
+func (h *hub) unsubscribe(ctx context.Context, s *subscriber) error {
+	h.Lock()
+	delete(h.subs, s)
+	h.Unlock()
+	close(s.quit)
 	return nil
 }
 

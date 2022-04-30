@@ -19,6 +19,11 @@ func main() {
 	_ = h.publish(ctx, &message{data: []byte("test01")})
 	_ = h.publish(ctx, &message{data: []byte("test02")})
 	_ = h.publish(ctx, &message{data: []byte("test03")})
+	time.Sleep(1 * time.Second)
 
-	time.Sleep(2 * time.Second)
+	h.unsubscribe(ctx, sub03)
+	_ = h.publish(ctx, &message{data: []byte("test04")})
+	_ = h.publish(ctx, &message{data: []byte("test05")})
+
+	time.Sleep(1 * time.Second)
 }
