@@ -8,7 +8,6 @@ import (
 
 	"github.com/go-training/example49-dependency-injection/config"
 	"github.com/go-training/example49-dependency-injection/user"
-	"github.com/go-training/example49-dependency-injection/user/ldap"
 
 	"github.com/appleboy/graceful"
 	"github.com/joho/godotenv"
@@ -19,7 +18,6 @@ import (
 type application struct {
 	router http.Handler
 	user   *user.Service
-	ldap   *ldap.Service
 }
 
 func newApplication(
