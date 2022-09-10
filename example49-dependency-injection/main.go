@@ -6,11 +6,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/go-training/example49-dependency-injection/cache"
 	"github.com/go-training/example49-dependency-injection/config"
-	"github.com/go-training/example49-dependency-injection/router"
 	"github.com/go-training/example49-dependency-injection/user"
-	"github.com/go-training/example49-dependency-injection/user/crowd"
 	"github.com/go-training/example49-dependency-injection/user/ldap"
 
 	"github.com/appleboy/graceful"
@@ -22,6 +19,7 @@ import (
 type application struct {
 	router http.Handler
 	user   *user.Service
+	ldap   *ldap.Service
 }
 
 func newApplication(
@@ -47,35 +45,14 @@ func main() {
 			Msg("invalid configuration")
 	}
 
-	c, err := cache.New(cfg)
+	app, err := InitializeApplication(cfg)
 	if err != nil {
 		log.Fatal().
 			Err(err).
 			Msg("invalid configuration")
 	}
 
-	l, err := ldap.New(cfg, c)
-	if err != nil {
-		log.Fatal().
-			Err(err).
-			Msg("invalid configuration")
-	}
-
-	cd, err := crowd.New(cfg, c)
-	if err != nil {
-		log.Fatal().
-			Err(err).
-			Msg("invalid configuration")
-	}
-
-	u, err := user.New(l, cd, c)
-	if err != nil {
-		log.Fatal().
-			Err(err).
-			Msg("invalid configuration")
-	}
-
-	if ok := u.Login("test", "test"); !ok {
+	if ok := app.user.Login("test", "test"); !ok {
 		log.Fatal().
 			Err(err).
 			Msg("invalid configuration")
@@ -84,7 +61,7 @@ func main() {
 	m := graceful.NewManager()
 	srv := &http.Server{
 		Addr:              cfg.Server.Port,
-		Handler:           router.New(cfg, u),
+		Handler:           app.router,
 		ReadHeaderTimeout: 5 * time.Second,
 		ReadTimeout:       5 * time.Minute,
 		WriteTimeout:      5 * time.Minute,
