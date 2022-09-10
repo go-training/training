@@ -19,6 +19,21 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+type application struct {
+	router http.Handler
+	user   *user.Service
+}
+
+func newApplication(
+	router http.Handler,
+	user *user.Service,
+) *application {
+	return &application{
+		router: router,
+		user:   user,
+	}
+}
+
 func main() {
 	var envfile string
 	flag.StringVar(&envfile, "env-file", ".env", "Read in a file of environment variables")

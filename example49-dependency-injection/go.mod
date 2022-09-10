@@ -7,6 +7,7 @@ require (
 	github.com/gin-contrib/logger v0.2.2
 	github.com/gin-contrib/pprof v1.4.0
 	github.com/gin-gonic/gin v1.8.1
+	github.com/google/wire v0.5.0
 	github.com/joho/godotenv v1.4.0
 	github.com/kelseyhightower/envconfig v1.4.0
 	github.com/prometheus/client_golang v1.13.0
