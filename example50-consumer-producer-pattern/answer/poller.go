@@ -3,36 +3,70 @@ package answer
 import (
 	"context"
 	"log"
+	"sync"
 	"time"
 )
 
 func NewPoller() *Poller {
 	return &Poller{
 		routineGroup: newRoutineGroup(),
+		ready:        make(chan struct{}, 1),
+		metric:       newMetric(),
 	}
 }
 
 type Poller struct {
+	sync.Mutex
+	ready        chan struct{}
 	routineGroup *routineGroup
+	metric       *metric
+}
+
+func (p *Poller) schedule(n int) {
+	p.Lock()
+	defer p.Unlock()
+	if int(p.metric.BusyWorkers()) >= n {
+		return
+	}
+
+	select {
+	case p.ready <- struct{}{}:
+	default:
+	}
 }
 
 func (p *Poller) Poll(ctx context.Context, n int) error {
-	for i := 0; i < n; i++ {
-		func(i int) {
-			p.routineGroup.Run(func() {
-				for {
-					select {
-					case <-ctx.Done():
-						return
-					default:
-						_ = p.poll(ctx, i)
-					}
+	// scheduler
+	for {
+		p.schedule(n)
+
+		select {
+		case <-p.ready:
+		case <-ctx.Done():
+			return nil
+		}
+
+	LOOP:
+		for {
+			select {
+			case <-ctx.Done():
+				break LOOP
+			default:
+				task, err := p.fetch(ctx)
+				if err != nil {
+					log.Println("fetch task error:", err.Error())
+					break
 				}
-			})
-		}(i)
+				p.metric.IncBusyWorker()
+				p.routineGroup.Run(func() {
+					if err := p.execute(ctx, task); err != nil {
+						log.Println("execute task error:", err.Error())
+					}
+				})
+				break LOOP
+			}
+		}
 	}
-	p.routineGroup.Wait()
-	return nil
 }
 
 func (p *Poller) poll(ctx context.Context, n int) error {
@@ -54,5 +88,8 @@ func (p *Poller) fetch(ctx context.Context) (string, error) {
 }
 
 func (p *Poller) execute(ctx context.Context, task string) error {
+	defer func() {
+		p.metric.DecBusyWorker()
+	}()
 	return nil
 }
