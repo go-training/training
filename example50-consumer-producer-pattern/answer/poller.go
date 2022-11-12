@@ -2,30 +2,34 @@ package answer
 
 import (
 	"context"
+	"errors"
 	"log"
 	"sync"
 	"time"
 )
 
-func NewPoller() *Poller {
+func NewPoller(workerNum int) *Poller {
 	return &Poller{
 		routineGroup: newRoutineGroup(),
+		workerNum:    workerNum,
 		ready:        make(chan struct{}, 1),
 		metric:       newMetric(),
 	}
 }
 
 type Poller struct {
-	sync.Mutex
-	ready        chan struct{}
 	routineGroup *routineGroup
-	metric       *metric
+	workerNum    int
+
+	sync.Mutex
+	ready  chan struct{}
+	metric *metric
 }
 
-func (p *Poller) schedule(n int) {
+func (p *Poller) schedule() {
 	p.Lock()
 	defer p.Unlock()
-	if int(p.metric.BusyWorkers()) >= n {
+	if int(p.metric.BusyWorkers()) >= p.workerNum {
 		return
 	}
 
@@ -35,10 +39,10 @@ func (p *Poller) schedule(n int) {
 	}
 }
 
-func (p *Poller) Poll(ctx context.Context, n int) error {
+func (p *Poller) Poll(ctx context.Context) error {
 	// scheduler
 	for {
-		p.schedule(n)
+		p.schedule()
 
 		select {
 		case <-p.ready:
@@ -69,27 +73,16 @@ func (p *Poller) Poll(ctx context.Context, n int) error {
 	}
 }
 
-func (p *Poller) poll(ctx context.Context, n int) error {
-	log.Printf("gorutine %02d: fetch task\n", n)
-	task, err := p.fetch(ctx)
-	if err != nil {
-		return nil
-	}
-
-	time.Sleep(200 * time.Millisecond)
-	log.Printf("gorutine %02d: execute task\n", n)
-	return p.execute(ctx, task)
-}
-
 func (p *Poller) fetch(ctx context.Context) (string, error) {
 	// connect database or other service
-	time.Sleep(400 * time.Millisecond)
-	return "foobar", nil
+	time.Sleep(1000 * time.Millisecond)
+	return "foobar", errors.New("no task")
 }
 
 func (p *Poller) execute(ctx context.Context, task string) error {
 	defer func() {
 		p.metric.DecBusyWorker()
+		p.schedule()
 	}()
 	return nil
 }

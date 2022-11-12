@@ -7,6 +7,6 @@ import (
 )
 
 func main() {
-	producer := issue.NewPoller()
-	producer.Poll(context.Background(), 10)
+	producer := issue.NewPoller(5)
+	producer.Poll(context.Background())
 }
