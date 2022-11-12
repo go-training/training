@@ -1,4 +1,4 @@
-package main
+package answer
 
 import "sync"
 
