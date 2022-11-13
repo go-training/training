@@ -21,18 +21,21 @@ type Poller struct {
 
 func (p *Poller) Poll(ctx context.Context) error {
 	for i := 0; i < p.workerNum; i++ {
+		// step01
 		p.routineGroup.Run(func() {
 			for {
 				select {
 				case <-ctx.Done():
 					return
 				default:
+					// step02
 					task, err := p.fetch(ctx)
 					if err != nil {
 						log.Println("can't get task", err.Error())
 						break
 					}
 
+					// step03
 					if err := p.execute(ctx, task); err != nil {
 						log.Println("execute task error:", err.Error())
 					}
