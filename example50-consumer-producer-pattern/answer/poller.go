@@ -42,6 +42,7 @@ func (p *Poller) schedule() {
 func (p *Poller) Poll(ctx context.Context) error {
 	// scheduler
 	for {
+		// step01
 		p.schedule()
 
 		select {
@@ -56,12 +57,14 @@ func (p *Poller) Poll(ctx context.Context) error {
 			case <-ctx.Done():
 				break LOOP
 			default:
+				// step02
 				task, err := p.fetch(ctx)
 				if err != nil {
 					log.Println("fetch task error:", err.Error())
 					break
 				}
 				p.metric.IncBusyWorker()
+				// step03
 				p.routineGroup.Run(func() {
 					if err := p.execute(ctx, task); err != nil {
 						log.Println("execute task error:", err.Error())
