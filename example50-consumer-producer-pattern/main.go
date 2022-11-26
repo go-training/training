@@ -3,10 +3,16 @@ package main
 import (
 	"context"
 
-	"example/issue"
+	// poller02 "example/answer"
+	poller01 "example/issue"
 )
 
 func main() {
-	producer := issue.NewPoller(5)
-	producer.Poll(context.Background())
+	// issue
+	producer01 := poller01.NewPoller(5)
+	producer01.Poll(context.Background())
+
+	// answer
+	// producer02 := poller02.NewPoller(5)
+	// producer02.Poll(context.Background())
 }
