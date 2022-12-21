@@ -13,13 +13,38 @@ type canceler struct {
 
 // Cancel event from api or web
 func (c *canceler) Cancel(ctx context.Context, id string) error {
+	c.Lock()
 	for subsciber, target := range c.subsciber {
 		if id == target {
 			close(subsciber)
 			delete(c.subsciber, subsciber)
 		}
 	}
+	c.Unlock()
 	return nil
+}
+
+// Canceled connection from worker
+func (c *canceler) Canceled(ctx context.Context, id string) (bool, error) {
+	subsciber := make(chan struct{})
+	c.Lock()
+	c.subsciber[subsciber] = id
+	c.Unlock()
+
+	defer func() {
+		c.Lock()
+		delete(c.subsciber, subsciber)
+		c.Unlock()
+	}()
+
+	for {
+		select {
+		case <-ctx.Done():
+			return false, nil
+		case <-subsciber:
+			return true, nil
+		}
+	}
 }
 
 func newCanceler() *canceler {
