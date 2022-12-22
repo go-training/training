@@ -26,3 +26,26 @@ func TestUserCancelTask(t *testing.T) {
 		t.Fatal("get error")
 	}
 }
+
+func TestContextCancelTask(t *testing.T) {
+	var canceled bool
+	var err error
+	engine := newCanceler()
+	stop := make(chan struct{})
+
+	ctx, cancel := context.WithCancel(context.Background())
+
+	go func() {
+		canceled, err = engine.Canceled(ctx, "test123456")
+		stop <- struct{}{}
+	}()
+	cancel()
+	<-stop
+
+	if canceled {
+		t.Fatal("detect cancel task")
+	}
+	if err != nil {
+		t.Fatal("get error")
+	}
+}

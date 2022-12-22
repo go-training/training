@@ -14,13 +14,13 @@ type canceler struct {
 // Cancel event from api or web
 func (c *canceler) Cancel(ctx context.Context, id string) error {
 	c.Lock()
+	defer c.Unlock()
 	for subsciber, target := range c.subsciber {
 		if id == target {
 			close(subsciber)
 			delete(c.subsciber, subsciber)
 		}
 	}
-	c.Unlock()
 	return nil
 }
 
