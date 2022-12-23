@@ -37,13 +37,11 @@ func (c *canceler) Canceled(ctx context.Context, id string) (bool, error) {
 		c.Unlock()
 	}()
 
-	for {
-		select {
-		case <-ctx.Done():
-			return false, nil
-		case <-subsciber:
-			return true, nil
-		}
+	select {
+	case <-ctx.Done():
+		return false, nil
+	case <-subsciber:
+		return true, nil
 	}
 }
 
