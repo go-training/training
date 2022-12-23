@@ -12,7 +12,7 @@ func TestUserCancelTask(t *testing.T) {
 	engine := newCanceler()
 	stop := make(chan struct{})
 	go func() {
-		canceled, err = engine.Canceled(context.Background(), "test123456")
+		canceled, err = engine.Cancelled(context.Background(), "test123456")
 		stop <- struct{}{}
 	}()
 	time.Sleep(1 * time.Second)
@@ -36,7 +36,7 @@ func TestContextCancelTask(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
 
 	go func() {
-		canceled, err = engine.Canceled(ctx, "test123456")
+		canceled, err = engine.Cancelled(ctx, "test123456")
 		stop <- struct{}{}
 	}()
 	cancel()
@@ -44,6 +44,23 @@ func TestContextCancelTask(t *testing.T) {
 
 	if canceled {
 		t.Fatal("detect cancel task")
+	}
+	if err != nil {
+		t.Fatal("get error")
+	}
+}
+
+func TestUserCancelTaskFirst(t *testing.T) {
+	var canceled bool
+	var err error
+	engine := newCanceler()
+
+	// User cancel task first and
+	_ = engine.Cancel(context.Background(), "test1234")
+	canceled, err = engine.Cancelled(context.Background(), "test1234")
+
+	if !canceled {
+		t.Fatal("can't get cancel event")
 	}
 	if err != nil {
 		t.Fatal("get error")
