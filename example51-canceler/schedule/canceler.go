@@ -18,7 +18,6 @@ func (c *canceler) Cancel(ctx context.Context, id string) error {
 	for subsciber, target := range c.subsciber {
 		if id == target {
 			close(subsciber)
-			delete(c.subsciber, subsciber)
 		}
 	}
 	return nil
