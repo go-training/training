@@ -53,6 +53,9 @@ Learning basic [Golang](https://golang.org/) in one day
 * [example46](./example46-go-1.18-generics-part2) introduction to go1.18 generics constraints, slices and maps packages. [Chinese Blog](https://blog.wu-boy.com/2022/02/golang-1-18-generics-constraints-slices-maps/)
 * [example47](./example47-pyroscope-adhoc-profiling) pyroscope adhoc profiling in go. [Chinese Blog](https://blog.wu-boy.com/2022/02/pyroscope-adhoc-profiling-in-golang/)
 * [example48](./example48-pub-sub-pattern) simple pub/sub pattern in go. [Chinese Blog](https://blog.wu-boy.com/2022/04/simple-publish-subscribe-pattern-in-golang/)
+* [example49](./example49-dependency-injection/) Dependency Injection using wire tool. [Chinese Blog](https://blog.wu-boy.com/2022/09/dependency-injection-in-go/)
+* [exmaple50](./example50-consumer-producer-pattern/) simple scheduler with multiple worker. [Chinese Blog](https://blog.wu-boy.com/2022/11/simple-scheduler-with-multiple-worker-using-golang/)
+* [example51](./example51-canceler/) How to cancel a running task between backend and worker service. [Chinese Blog](https://blog.wu-boy.com/2022/12/system-design-how-to-cancel-a-running-task-in-golang/)
 
 [1]:https://github.com/golang/lint
 [2]:https://golang.org/cmd/gofmt/
