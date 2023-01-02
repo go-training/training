@@ -1,7 +1,7 @@
 package schedule
 
 type Engine struct {
-	canceler *canceler
+	*canceler
 }
 
 func New() *Engine {
