@@ -2,14 +2,16 @@ package main
 
 import (
 	"context"
-	"example51/schedule"
 	"net/http"
 	"time"
+
+	"example51/schedule"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	// initial schedule instance
 	s := schedule.New()
 
 	r := gin.Default()
@@ -24,12 +26,10 @@ func main() {
 
 		if err := s.Cancel(context.Background(), taskID); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{
-				"message": "pong",
+				"error": err,
 			})
 			return
 		}
-
-		// Update the task status.
 
 		c.JSON(http.StatusOK, gin.H{
 			"message": "ok",
