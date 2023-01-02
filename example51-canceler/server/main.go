@@ -25,33 +25,26 @@ func main() {
 		taskID := c.Param("id")
 
 		if err := s.Cancel(context.Background(), taskID); err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{
-				"error": err,
-			})
+			c.String(http.StatusInternalServerError, "crash")
 			return
 		}
 
-		c.JSON(http.StatusOK, gin.H{
-			"message": "ok",
-		})
+		c.String(http.StatusOK, "ok")
 	})
 
 	r.GET("/watch-task/:id", func(c *gin.Context) {
 		taskID := c.Param("id")
 
-		ctxDone, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+		ctxDone, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 		defer cancel()
 
 		ok, _ := s.Cancelled(ctxDone, taskID)
 		if ok {
-			c.JSON(http.StatusOK, gin.H{
-				"cancel": true,
-			})
+			c.String(http.StatusOK, "true")
+			return
 		}
 
-		c.JSON(http.StatusOK, gin.H{
-			"cancel": false,
-		})
+		c.String(http.StatusOK, "false")
 	})
 
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
