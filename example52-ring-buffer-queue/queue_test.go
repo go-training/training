@@ -28,3 +28,27 @@ func TestQueue(t *testing.T) {
 	assert.Error(t, err)
 	assert.Equal(t, errNoTask, err)
 }
+
+func BenchmarkCircularBufferEnqueue(b *testing.B) {
+	q := NewCircularBuffer(b.N)
+
+	b.ReportAllocs()
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		q.Enqueue(i)
+	}
+}
+
+func BenchmarkCircularBufferDequeue(b *testing.B) {
+	q := NewCircularBuffer(b.N)
+
+	for i := 0; i < b.N; i++ {
+		q.Enqueue(i)
+	}
+
+	b.ReportAllocs()
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		_, _ = q.Dequeue()
+	}
+}
