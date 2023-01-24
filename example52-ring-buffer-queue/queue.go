@@ -7,6 +7,11 @@ import (
 
 type T interface{}
 
+var (
+	errFull   = errors.New("full")
+	errNoTask = errors.New("no task")
+)
+
 type CircularBuffer struct {
 	sync.Mutex
 	taskQueue []T
@@ -25,7 +30,7 @@ func (s *CircularBuffer) IsFull() bool {
 
 func (s *CircularBuffer) Enqueue(task T) error {
 	if s.IsFull() {
-		return errors.New("full")
+		return errFull
 	}
 
 	s.Lock()
@@ -38,7 +43,7 @@ func (s *CircularBuffer) Enqueue(task T) error {
 
 func (s *CircularBuffer) Dequeue() (T, error) {
 	if s.IsEmpty() {
-		return nil, errors.New("no task")
+		return nil, errNoTask
 	}
 
 	s.Lock()
