@@ -18,14 +18,15 @@ type CircularBuffer struct {
 	capacity  int
 	head      int
 	tail      int
+	full      bool
 }
 
 func (s *CircularBuffer) IsEmpty() bool {
-	return s.head == s.tail
+	return s.head == s.tail && !s.full
 }
 
 func (s *CircularBuffer) IsFull() bool {
-	return s.head == (s.tail+1)%s.capacity
+	return s.full
 }
 
 func (s *CircularBuffer) Enqueue(task T) error {
@@ -36,6 +37,7 @@ func (s *CircularBuffer) Enqueue(task T) error {
 	s.Lock()
 	s.taskQueue[s.tail] = task
 	s.tail = (s.tail + 1) % s.capacity
+	s.full = s.head == s.tail
 	s.Unlock()
 
 	return nil
@@ -48,6 +50,7 @@ func (s *CircularBuffer) Dequeue() (T, error) {
 
 	s.Lock()
 	data := s.taskQueue[s.head]
+	s.full = false
 	s.head = (s.head + 1) % s.capacity
 	s.Unlock()
 

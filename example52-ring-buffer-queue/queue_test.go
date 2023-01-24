@@ -10,21 +10,21 @@ func TestQueue(t *testing.T) {
 	size := 100
 	q := NewCircularBuffer(size)
 
-	for i := 0; i < (size - 1); i++ {
-		assert.NoError(t, q.Enqueue(i+1))
+	for i := 0; i < size; i++ {
+		assert.NoError(t, q.Enqueue(i))
 	}
 	// can't insert new data.
 	assert.Error(t, q.Enqueue(0))
 	assert.Equal(t, errFull, q.Enqueue(0))
 
-	for i := 0; i < (size - 1); i++ {
+	for i := 0; i < size; i++ {
 		v, err := q.Dequeue()
-		assert.Equal(t, i+1, v.(int))
+		assert.Equal(t, i, v.(int))
 		assert.NoError(t, err)
 	}
 
-	_, err := q.Dequeue()
 	// no task
+	_, err := q.Dequeue()
 	assert.Error(t, err)
 	assert.Equal(t, errNoTask, err)
 }
