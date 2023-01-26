@@ -55,6 +55,7 @@ Learning basic [Golang](https://go.dev/) in one day
 * [example49](./example49-dependency-injection/) Dependency Injection using wire tool. [Chinese Blog](https://blog.wu-boy.com/2022/09/dependency-injection-in-go/)
 * [exmaple50](./example50-consumer-producer-pattern/) simple scheduler with multiple worker. [Chinese Blog](https://blog.wu-boy.com/2022/11/simple-scheduler-with-multiple-worker-using-golang/)
 * [example51](./example51-canceler/) How to cancel a running task between backend and worker service. [Chinese Blog](https://blog.wu-boy.com/2022/12/system-design-how-to-cancel-a-running-task-in-golang/)
+* [example52](./example52-ring-buffer-queue/) ring buffer queue with fixed size. [Chinese Blog](https://blog.wu-boy.com/2023/01/ring-buffer-queue-with-fixed-size-in-golang/)
 
 [1]:https://github.com/golang/lint
 [2]:https://golang.org/cmd/gofmt/
