@@ -1,4 +1,4 @@
-name: Run Tests
+name: Example53 Build Docker Image
 
 on:
   push:
