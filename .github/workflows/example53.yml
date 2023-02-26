@@ -60,7 +60,7 @@ jobs:
         with:
           context: .
           platforms: linux/amd64,linux/arm,linux/arm64
-          file: Dockerfile
+          file: example53-container-base-image-updates/Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.docker-meta.outputs.tags }}
           labels: ${{ steps.docker-meta.outputs.labels }}
