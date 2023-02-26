@@ -1,6 +1,6 @@
 module github.com/go-training/training/example23-deploy-go-application-with-up
 
-require github.com/gin-gonic/gin v1.7.0
+require github.com/gin-gonic/gin v1.7.7
 
 require (
 	github.com/gin-contrib/sse v0.1.0 // indirect
