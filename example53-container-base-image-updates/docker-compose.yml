@@ -1,0 +1,14 @@
+version: "3"
+services:
+  cavo:
+    image: ghcr.io/go-training/example53:latest
+    restart: always
+    ports:
+      - "8080:8080"
+
+  watchtower:
+    image: containrrr/watchtower
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 30
