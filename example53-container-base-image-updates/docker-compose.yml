@@ -1,8 +1,10 @@
 version: "3"
 services:
   cavo:
-    image: ghcr.io/go-training/example53
+    image: ghcr.io/go-training/example53:latest
     restart: always
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
     ports:
       - "8080:8080"
 
