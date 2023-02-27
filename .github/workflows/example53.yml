@@ -59,7 +59,6 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: example53-container-base-image-updates
-          platforms: linux/amd64,linux/arm,linux/arm64
           file: example53-container-base-image-updates/Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.docker-meta.outputs.tags }}
