@@ -56,7 +56,7 @@ Learning basic [Golang](https://go.dev/) in one day
 * [exmaple50](./example50-consumer-producer-pattern/) simple scheduler with multiple worker. [Chinese Blog](https://blog.wu-boy.com/2022/11/simple-scheduler-with-multiple-worker-using-golang/)
 * [example51](./example51-canceler/) How to cancel a running task between backend and worker service. [Chinese Blog](https://blog.wu-boy.com/2022/12/system-design-how-to-cancel-a-running-task-in-golang/)
 * [example52](./example52-ring-buffer-queue/) ring buffer queue with fixed size. [Chinese Blog](https://blog.wu-boy.com/2023/01/ring-buffer-queue-with-fixed-size-in-golang/)
-* [example53](./example53-container-base-image-updates/) A container-based solution for automating Docker container base image updates.
+* [example53](./example53-container-base-image-updates/) A container-based solution for automating Docker container base image updates. [Chinese Blog](https://blog.wu-boy.com/2023/02/automating-docker-container-base-image-updates-cht/), [English Blog](https://blog.wu-boy.com/2023/02/automating-docker-container-base-image-updates-eng/)
 
 [1]:https://github.com/golang/lint
 [2]:https://golang.org/cmd/gofmt/
