@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM scratch
+FROM alpine:3.17
 
 ARG TARGETOS
 ARG TARGETARCH
@@ -10,4 +10,4 @@ COPY release/${TARGETOS}/${TARGETARCH}/example53 /bin/
 
 EXPOSE 8080
 
-ENTRYPOINT ["/example53"]
+ENTRYPOINT ["/bin/example53"]
