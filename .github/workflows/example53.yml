@@ -25,9 +25,9 @@ jobs:
 
       - name: Build binary
         run : |
-          make build_linux_amd64
-          make build_linux_arm
-          make build_linux_arm64
+          make -C example53-container-base-image-updates build_linux_amd64
+          make -C example53-container-base-image-updates build_linux_arm
+          make -C example53-container-base-image-updates build_linux_arm64
 
       -
         name: Set up QEMU
