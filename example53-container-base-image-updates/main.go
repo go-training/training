@@ -13,9 +13,6 @@ func main() {
 			"message": "pong",
 		})
 	})
-	r.GET("/foobar", func(c *gin.Context) {
-		c.AbortWithStatus(http.StatusOK)
-	})
 	r.GET("/", func(c *gin.Context) {
 		c.AbortWithStatus(http.StatusOK)
 	})
