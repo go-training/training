@@ -13,6 +13,11 @@ func main() {
 			"message": "pong",
 		})
 	})
+	r.GET("/foobar", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"message": "foobar",
+		})
+	})
 	r.GET("/", func(c *gin.Context) {
 		c.AbortWithStatus(http.StatusOK)
 	})
