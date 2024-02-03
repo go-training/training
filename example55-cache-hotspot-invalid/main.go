@@ -33,11 +33,12 @@ func (db *DB) GetArticle(req int, id int) *Article {
 		return data
 	}
 
+	slog.Info("missing cache", "id", id, "req", req)
 	data = &Article{
 		ID:      id,
 		Content: "FooBar",
 	}
 	db.cache.Set(id, data)
-	slog.Info("missing cache", "id", id, "req", req)
+
 	return data
 }
