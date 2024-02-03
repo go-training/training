@@ -3,11 +3,14 @@ package main
 import (
 	"log/slog"
 	"sync"
+
+	"golang.org/x/sync/singleflight"
 )
 
 func main() {
 	db := &DB{
-		cache: NewCache(),
+		cache:  NewCache(),
+		engine: singleflight.Group{},
 	}
 
 	var wg sync.WaitGroup
@@ -16,14 +19,15 @@ func main() {
 		go func(req int) {
 			defer wg.Done()
 			data := db.GetArticle(req, 1)
-			slog.Info("data", "data", data, "req", req)
+			slog.Info("data info", "data", data, "req", req)
 		}(i)
 	}
 	wg.Wait()
 }
 
 type DB struct {
-	cache *Cache
+	cache  *Cache
+	engine singleflight.Group
 }
 
 func (db *DB) GetArticle(req int, id int) *Article {
@@ -33,12 +37,17 @@ func (db *DB) GetArticle(req int, id int) *Article {
 		return data
 	}
 
-	slog.Info("missing cache", "id", id, "req", req)
-	data = &Article{
-		ID:      id,
-		Content: "FooBar",
-	}
-	db.cache.Set(id, data)
+	row, _, shared := db.engine.Do("article", func() (interface{}, error) {
+		slog.Info("missing cache", "id", id, "req", req)
+		data := &Article{
+			ID:      id,
+			Content: "FooBar",
+		}
+		db.cache.Set(id, data)
+		return data, nil
+	})
 
-	return data
+	slog.Any("shared", shared)
+
+	return row.(*Article)
 }
