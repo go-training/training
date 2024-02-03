@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log/slog"
 	"sync"
 
@@ -37,7 +38,8 @@ func (db *DB) GetArticle(req int, id int) *Article {
 		return data
 	}
 
-	row, _, shared := db.engine.Do("article", func() (interface{}, error) {
+	key := fmt.Sprintf("article:%d", id)
+	row, _, _ := db.engine.Do(key, func() (interface{}, error) {
 		slog.Info("missing cache", "id", id, "req", req)
 		data := &Article{
 			ID:      id,
@@ -46,8 +48,6 @@ func (db *DB) GetArticle(req int, id int) *Article {
 		db.cache.Set(id, data)
 		return data, nil
 	})
-
-	slog.Any("shared", shared)
 
 	return row.(*Article)
 }
