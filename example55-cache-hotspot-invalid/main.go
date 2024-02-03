@@ -1,6 +1,7 @@
-package example55
+package main
 
 import (
+	"log/slog"
 	"sync"
 )
 
@@ -10,12 +11,12 @@ func main() {
 	}
 
 	var wg sync.WaitGroup
-	wg.Add(10)
-	for i := 0; i < 10; i++ {
-		go func() {
+	wg.Add(5)
+	for i := 0; i < 5; i++ {
+		go func(req int) {
 			defer wg.Done()
-			_ = db.GetArticle(1)
-		}()
+			_ = db.GetArticle(req, 1)
+		}(i)
 	}
 	wg.Wait()
 }
@@ -24,9 +25,10 @@ type DB struct {
 	cache *Cache
 }
 
-func (db *DB) GetArticle(id int) *Article {
+func (db *DB) GetArticle(worker int, id int) *Article {
 	data := db.cache.Get(id)
 	if data != nil {
+		slog.Info("cache hit", "id", id, "worker", worker)
 		return data
 	}
 
@@ -35,6 +37,6 @@ func (db *DB) GetArticle(id int) *Article {
 		Content: "FooBar",
 	}
 	db.cache.Set(id, data)
-
+	slog.Info("missing cache", "id", id, "worker", worker)
 	return data
 }

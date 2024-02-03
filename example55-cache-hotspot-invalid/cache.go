@@ -1,4 +1,4 @@
-package example55
+package main
 
 import "sync"
 
@@ -8,11 +8,11 @@ type Cache struct {
 }
 
 func (c *Cache) Get(id int) *Article {
-	c.Lock()
-	defer c.Unlock()
 	if _, ok := c.entries[id]; !ok {
 		return nil
 	}
+	c.Lock()
+	defer c.Unlock()
 	return c.entries[id]
 }
 

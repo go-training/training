@@ -1,4 +1,4 @@
-package example55
+package main
 
 type Article struct {
 	ID      int
