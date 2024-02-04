@@ -73,6 +73,7 @@ func (db *DB) GetArticleOld(req int, id int) *Article {
 		Content: "FooBar",
 	}
 	db.cache.Set(id, data)
+	time.Sleep(100 * time.Millisecond)
 
 	return data
 }
