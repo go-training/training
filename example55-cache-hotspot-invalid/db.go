@@ -5,6 +5,8 @@ import (
 	"log/slog"
 	"time"
 
+	gsingleflight "example55/singleflight"
+
 	"golang.org/x/sync/singleflight"
 )
 
@@ -90,5 +92,88 @@ func NewDB() *DB {
 	return &DB{
 		cache:  NewCache(),
 		engine: singleflight.Group{},
+	}
+}
+
+type DBG struct {
+	cache  *Cache
+	engine gsingleflight.Group[int, *Article]
+}
+
+func (db *DBG) GetArticle(req int, id int) *Article {
+	data := db.cache.Get(id)
+	if data != nil {
+		slog.Info("cache hit", "id", id, "req", req)
+		return data
+	}
+
+	slog.Info("missing cache", "id", id, "req", req)
+	data = &Article{
+		ID:      id,
+		Content: "FooBar",
+	}
+	db.cache.Set(id, data)
+	time.Sleep(100 * time.Millisecond)
+
+	return data
+}
+
+func (db *DBG) GetArticleDo(req int, id int) *Article {
+	data := db.cache.Get(id)
+	if data != nil {
+		slog.Info("cache hit", "id", id, "req", req)
+		return data
+	}
+
+	row, err, _ := db.engine.Do(id, func() (*Article, error) {
+		slog.Info("missing cache", "id", id, "req", req)
+		data := &Article{
+			ID:      id,
+			Content: "FooBar",
+		}
+		db.cache.Set(id, data)
+		time.Sleep(100 * time.Millisecond)
+		return data, nil
+	})
+
+	if err != nil {
+		slog.Error("singleflight error", "err", err)
+		return nil
+	}
+
+	return row
+}
+
+func (db *DBG) GetArticleDoChan(req int, id int, t time.Duration) *Article {
+	data := db.cache.Get(id)
+	if data != nil {
+		slog.Info("cache hit", "id", id, "req", req)
+		return data
+	}
+
+	dataChan := db.engine.DoChan(id, func() (*Article, error) {
+		slog.Info("missing cache", "id", id, "req", req)
+		data := &Article{
+			ID:      id,
+			Content: "FooBar",
+		}
+		db.cache.Set(id, data)
+		time.Sleep(115 * time.Millisecond)
+		return data, nil
+	})
+
+	select {
+	case <-time.After(t):
+		slog.Info("timeout", "id", id, "req", req)
+		return nil
+	case res := <-dataChan:
+		return res.Val
+	}
+}
+
+func NewDBG() *DBG {
+	return &DBG{
+		cache:  NewCache(),
+		engine: gsingleflight.Group[int, *Article]{},
 	}
 }

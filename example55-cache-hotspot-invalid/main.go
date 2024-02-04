@@ -51,4 +51,7 @@ func main() {
 	slog.Info("singleflight (none Generic) test started..")
 	SingleFlight(NewDB())
 	slog.Info("singleflight (none Generic) test finished..")
+	slog.Info("singleflight (Generic) test started..")
+	SingleFlight(NewDBG())
+	slog.Info("singleflight (Generic) test finished..")
 }
