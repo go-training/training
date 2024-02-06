@@ -58,7 +58,7 @@ Learning basic [Golang](https://go.dev/) in one day
 * [example52](./example52-ring-buffer-queue/) ring buffer queue with fixed size. [Chinese Blog](https://blog.wu-boy.com/2023/01/ring-buffer-queue-with-fixed-size-in-golang/)
 * [example53](./example53-container-base-image-updates/) A container-based solution for automating Docker container base image updates. [Chinese Blog](https://blog.wu-boy.com/2023/02/automating-docker-container-base-image-updates-cht/), [English Blog](https://blog.wu-boy.com/2023/02/automating-docker-container-base-image-updates-eng/)
 * [exmaple54](./example54-hot-reload-for-development) introduction live reload tool: air [Chinese Blog](https://blog.wu-boy.com/2023/10/live-reload-in-go/)
-* [example55](./example55-cache-hotspot-invalid/) how to invalidate cache hotspot in golang. [Chinese Blog](https://blog.wu-boy.com/2024/02/how-to-reslove-the-hotspot-invalid-using-singleflight/)
+* [example55](./example55-cache-hotspot-invalid/) how to invalidate cache hotspot in golang. [Chinese Blog](https://blog.wu-boy.com/2024/02/how-to-reslove-the-hotspot-invalid-using-singleflight/), [English Blog](https://blog.wu-boy.com/2024/02/how-to-reslove-the-hotspot-invalid-using-singleflight-en/)
 
 [1]:https://github.com/golang/lint
 [2]:https://golang.org/cmd/gofmt/
