@@ -11,7 +11,7 @@ import (
 )
 
 type DB struct {
-	cache  *Cache
+	cache  *Cache[int, *Article]
 	engine singleflight.Group
 }
 
@@ -90,13 +90,13 @@ func (db *DB) GetArticleDoChan(req int, id int, t time.Duration) *Article {
 
 func NewDB() *DB {
 	return &DB{
-		cache:  NewCache(),
+		cache:  NewCache[int, *Article](),
 		engine: singleflight.Group{},
 	}
 }
 
 type DBG struct {
-	cache  *Cache
+	cache  *Cache[int, *Article]
 	engine gsingleflight.Group[int, *Article]
 }
 
@@ -173,7 +173,7 @@ func (db *DBG) GetArticleDoChan(req int, id int, t time.Duration) *Article {
 
 func NewDBG() *DBG {
 	return &DBG{
-		cache:  NewCache(),
+		cache:  NewCache[int, *Article](),
 		engine: gsingleflight.Group[int, *Article]{},
 	}
 }
