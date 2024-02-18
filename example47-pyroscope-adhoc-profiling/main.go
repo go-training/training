@@ -57,7 +57,7 @@ func main() {
 	// pyroscope will override the server address
 	profiler.Start(profiler.Config{
 		ApplicationName: "adhoc.example.go",
-		ServerAddress:   "http://pyroscope:4040",
+		ServerAddress:   "http://localhost:4040",
 	})
 	run()
 }

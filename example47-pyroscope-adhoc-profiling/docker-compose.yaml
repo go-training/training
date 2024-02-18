@@ -1,0 +1,12 @@
+services:
+  pyroscope:
+    image: "oa-mirror.mediatek.inc:5000/grafana/pyroscope:latest"
+    ports:
+      - "4040:4040"
+    command:
+      - "server"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4040/ready"]
+      interval: 5s
+      timeout: 10s
+      retries: 5
