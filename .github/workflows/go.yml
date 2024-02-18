@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
-        go: [1.14, 1.15, 1.16, 1.17, 1.18, 1.19]
+        go: [1.18, 1.19, "1.20", 1.21, 1.22]
     name: ${{ matrix.os }} @ Go ${{ matrix.go }}
     runs-on: ${{ matrix.os }}
     env:
@@ -32,5 +32,5 @@ jobs:
 
       - name: Run Testing
         run: |
-          go test -v -bench=. ./example36-performance/...
-          go test -v -run=^$ -benchmem -bench . ./example52-ring-buffer-queue/...
+          cd example36-performance && go test -v -bench=. ./...
+          cd example52-ring-buffer-queue && go test -v -run=^$ -benchmem -bench . ./...
