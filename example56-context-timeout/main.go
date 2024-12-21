@@ -14,6 +14,7 @@ func main() {
 		}
 	}()
 
+	// how to fix the timeout issue?
 	for {
 		select {
 		case val := <-output:
