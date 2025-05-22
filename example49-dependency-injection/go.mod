@@ -2,8 +2,6 @@ module github.com/go-training/example49-dependency-injection
 
 go 1.23.0
 
-toolchain go1.24.3
-
 require (
 	github.com/appleboy/graceful v1.1.1
 	github.com/gin-contrib/logger v1.2.5
