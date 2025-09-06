@@ -12,7 +12,7 @@ Learning basic [Golang](https://go.dev/) in one day
 - [example04](./example04-constructor-and-struct): How to initializing `constructor` in Go.
 - [example05](./example05-interface): Create interface for multiple struct.
 - [example06](./example06-go-concurrency): How to use Goroutines in Go, share by communicating.
-- [example07](./example07-errors-hanlder): Errors handler in Go.
+- [example07](./example07-errors-handler): Errors handler in Go.
 - [example08](./example08-type-assertions): A type assertion provides access to an interface value.
 - [example09](./example09-command-line-tool): Write command line tool in Go.
 - [example10](./example10-simple-http-server): Simple http server and show example using [gin][4] framework.
@@ -59,7 +59,7 @@ Learning basic [Golang](https://go.dev/) in one day
 - [example53](./example53-container-base-image-updates/) A container-based solution for automating Docker container base image updates. [Chinese Blog](https://blog.wu-boy.com/2023/02/automating-docker-container-base-image-updates-cht/), [English Blog](https://blog.wu-boy.com/2023/02/automating-docker-container-base-image-updates-eng/)
 - [exmaple54](./example54-hot-reload-for-development) introduction live reload tool: air [Chinese Blog](https://blog.wu-boy.com/2023/10/live-reload-in-go/)
 - [example55](./example55-cache-hotspot-invalid/) how to invalidate cache hotspot in golang. [Chinese Blog](https://blog.wu-boy.com/2024/02/how-to-reslove-the-hotspot-invalid-using-singleflight/), [English Blog](https://blog.wu-boy.com/2024/02/how-to-reslove-the-hotspot-invalid-using-singleflight-en/)
-- [example56](./example56-context-with-timeout/) how to use context with timeout in golang. [Chinese Blog](https://blog.wu-boy.com/2024/11/learning-go-language-with-gitlab-api-zh-tw/), [English Blog](https://blog.wu-boy.com/2024/11/learning-go-language-with-gitlab-api-en/) [Chinese Video](https://www.youtube.com/watch?v=nPn-pnOz7qc)
+- [example56](./example56-context-timeout/) how to use context with timeout in golang. [Chinese Blog](https://blog.wu-boy.com/2024/11/learning-go-language-with-gitlab-api-zh-tw/), [English Blog](https://blog.wu-boy.com/2024/11/learning-go-language-with-gitlab-api-en/) [Chinese Video](https://www.youtube.com/watch?v=nPn-pnOz7qc)
 
 [1]: https://github.com/golang/lint
 [2]: https://golang.org/cmd/gofmt/
